@@ -1,8 +1,12 @@
 package com.qa.library.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +44,26 @@ public class BookControllerIntegrationTest {
 
 		mvc.perform(post("/books/createBook").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
 				.andExpect(status().isCreated()).andExpect(content().json(resultAsJSON));
+	}
+
+	@Test
+	public void getAllTest() throws Exception {
+		Book book = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		List<Book> output = new ArrayList<>();
+		output.add(book);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		mvc.perform(get("/books/getAll").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(content().json(outputAsJSON));
+	}
+
+	@Test
+	public void getByIdTest() throws Exception {
+		Book result = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		String resultAsJSON = mapper.writeValueAsString(result);
+
+		mvc.perform(get("/books/getById/1").contentType(MediaType.APPLICATION_JSON).content(resultAsJSON))
+				.andExpect(status().isOk()).andExpect(content().json(resultAsJSON));
 	}
 
 }
