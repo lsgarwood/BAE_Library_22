@@ -62,7 +62,7 @@ public class BookController {
 
 	// getByAvailability
 	@GetMapping("/getByAvailable/{available}")
-	public ResponseEntity<List<Book>> getByAvailability(@PathVariable boolean available) {
+	public ResponseEntity<List<Book>> getByAvailable(@PathVariable boolean available) {
 		return new ResponseEntity<List<Book>>(service.getByAvailable(available), HttpStatus.OK);
 	}
 
@@ -72,10 +72,16 @@ public class BookController {
 		return new ResponseEntity<Book>(service.create(book), HttpStatus.CREATED);
 	}
 
-	// Put - update availability, search by id
-	@PutMapping("/update/{id}") // localhost:8080/books/update/id
-	public ResponseEntity<Book> update(@PathVariable long id, @RequestBody Book book) {
-		return new ResponseEntity<Book>(service.update(id, book), HttpStatus.CREATED);
+	// Put - update available to true, search by id
+	@PutMapping("/checkIn/{id}") // localhost:8080/books/update/id
+	public ResponseEntity<Book> checkIn(@PathVariable long id, @RequestBody Book book) {
+		return new ResponseEntity<Book>(service.checkIn(id, book), HttpStatus.CREATED);
+	}
+
+	// Put - update available to false, search by id
+	@PutMapping("/checkOut/{id}") // localhost:8080/books/update/id
+	public ResponseEntity<Book> checkOut(@PathVariable long id, @RequestBody Book book) {
+		return new ResponseEntity<Book>(service.checkOut(id, book), HttpStatus.CREATED);
 	}
 
 	// Delete book
