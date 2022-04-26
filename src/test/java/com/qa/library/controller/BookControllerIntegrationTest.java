@@ -102,6 +102,17 @@ public class BookControllerIntegrationTest {
 	}
 
 	@Test
+	public void getByGenreTest() throws Exception {
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		List<Book> output = new ArrayList<>();
+		output.add(entry);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		mvc.perform(get("/books/getByGenre/Fiction").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
+	}
+
+	@Test
 	public void checkInTest() throws Exception {
 		Book entry = new Book("William Golding", false, "Fiction", "Lord Of The Flies");
 		String entryAsJSON = mapper.writeValueAsString(entry);
