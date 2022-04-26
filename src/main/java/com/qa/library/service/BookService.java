@@ -5,6 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.library.domain.Book;
+import com.qa.library.exceptions.BookNotCreatedException;
+import com.qa.library.exceptions.BookNotFoundWithIdException;
+import com.qa.library.exceptions.BookNotFoundWithTitleException;
+import com.qa.library.exceptions.BookUpdateNotSuccessfulException;
+import com.qa.library.exceptions.BooksNotFoundByAuthorException;
 import com.qa.library.repo.BookRepo;
 
 @Service
@@ -47,7 +52,7 @@ public class BookService {
 
 	// get books by genre
 	public List<Book> getByGenre(String genre) {
-		return repo.findByGenre(genre).orElseThrow(BooksNotFoundByGenreException::new);
+		return repo.findByGenre(genre);
 	}
 
 	// update a book by searching id
@@ -57,7 +62,7 @@ public class BookService {
 		existing.setAuthor(book.getAuthor());
 		existing.setGenre(book.getGenre());
 		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing).orElseThrow(BookUpdateUnsuccessfullException::new);
+		return repo.saveAndFlush(existing).orElseThrow(BookUpdateNotSuccessfulException::new);
 		// send new user info back
 	}
 
@@ -68,7 +73,7 @@ public class BookService {
 		existing.setAuthor(book.getAuthor());
 		existing.setGenre(book.getGenre());
 		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing).orElseThrow(BookUpdateUnsuccessfullException::new);
+		return repo.saveAndFlush(existing).orElseThrow(BookUpdateNotSuccessfulException::new);
 	}
 
 	// delete by searching id
@@ -80,7 +85,7 @@ public class BookService {
 	// delete by searching title
 	public boolean delete(String title) {
 		repo.deleteByTitle(title);
-		return !repo.existsById(title);
+		return !repo.existsByTitle(title);
 	}
 
 }
