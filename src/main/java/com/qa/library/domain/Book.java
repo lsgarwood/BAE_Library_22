@@ -26,7 +26,7 @@ public class Book {
 	private String genre;
 
 	@Column(nullable = false)
-	private boolean status;
+	private String status;
 
 	// Default Constructor
 	public Book() {
@@ -34,7 +34,7 @@ public class Book {
 	}
 
 	// Constructors for Creating/Inserting
-	public Book(String title, String author, String genre, boolean status) {
+	public Book(String title, String author, String genre, String status) {
 		super();
 		this.title = title;
 		this.author = author;
@@ -43,7 +43,7 @@ public class Book {
 	}
 
 	// Used for reading/selecting (and testing)
-	public Book(long id, String title, String author, String genre, boolean status) {
+	public Book(long id, String title, String author, String genre, String status) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -85,11 +85,11 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public boolean isStatus() {
+	public String isStatus() {
 		return status;
 	}
 
-	public void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
