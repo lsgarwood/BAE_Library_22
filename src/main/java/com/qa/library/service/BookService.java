@@ -70,4 +70,16 @@ public class BookService {
 		return repo.saveAndFlush(existing).orElseThrow(BookUpdateUnsuccessfullException::new);
 	}
 
+	// delete by searching id
+	public boolean delete(long id) {
+		repo.deleteById(id);
+		return !repo.existsById(id);
+	}
+
+	// delete by searching title
+	public boolean delete(String title) {
+		repo.deleteByTitle(title);
+		return !repo.existsById(title);
+	}
+
 }
