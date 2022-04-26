@@ -2,8 +2,6 @@ package com.qa.library.service;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.stereotype.Service;
 
 import com.qa.library.domain.Book;
@@ -24,7 +22,7 @@ public class BookService {
 
 	// create a new book
 	public Book create(Book book) {
-		return repo.saveAndFlush(book);// .orElseThrow(BookNotCreatedException::new);
+		return repo.saveAndFlush(book);
 	}
 
 	// get all books as list
@@ -37,15 +35,15 @@ public class BookService {
 		return repo.findById(id).orElseThrow(BookNotFoundWithIdException::new);
 	}
 
-	// get one book by title
+	// get books by title
 	public List<Book> getByTitle(String title) {
-		return repo.findByTitle(title); // .orElseThrow(BookNotFoundWithTitleException::new);
+		return repo.findByTitle(title);
 
 	}
 
 	// get books by author
 	public List<Book> getByAuthor(String author) {
-		return repo.findByAuthor(author);// .orElseThrow(BooksNotFoundByAuthorException::new);
+		return repo.findByAuthor(author);
 	}
 
 	// get books by genre
@@ -53,38 +51,29 @@ public class BookService {
 		return repo.findByGenre(genre);
 	}
 
-	// update a book by searching id
-	public Book update(long id, Book book) {
-		Book existing = repo.findById(id).get(); // get existing book
-		existing.setTitle(book.getTitle()); // change existing data to new
-		existing.setAuthor(book.getAuthor());
-		existing.setGenre(book.getGenre());
-		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing);// .orElseThrow(BookUpdateNotSuccessfulException::new);
-		// send new user info back
+	// get books by availability
+	public List<Book> getByAvailable(boolean available) {
+		return repo.findByAvailable(available);
 	}
 
-	// update a book by searching title
-	public Book update(String title, Book book) {
-		Book existing = repo.findByTitle(title).get(); // get existing book
-		existing.setTitle(book.getTitle()); // change existing data to new
-		existing.setAuthor(book.getAuthor());
-		existing.setGenre(book.getGenre());
-		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing);// .orElseThrow(BookUpdateNotSuccessfulException::new);
+	// update a book by searching id
+	public Book checkIn(long id, Book book) {
+		Book existing = repo.findById(id).get();
+		existing.setAvailable(true);
+		return repo.saveAndFlush(existing);
+	}
+
+	// update a book by searching id
+	public Book checkOut(long id, Book book) {
+		Book existing = repo.findById(id).get();
+		existing.setAvailable(false);
+		return repo.saveAndFlush(existing);
 	}
 
 	// delete by searching id
 	public boolean delete(long id) {
 		repo.deleteById(id);
 		return !repo.existsById(id);
-	}
-
-	@Transactional
-	// delete by searching title
-	public boolean delete(String title) {
-		repo.deleteByTitle(title);
-		return !repo.existsByTitle(title);
 	}
 
 }

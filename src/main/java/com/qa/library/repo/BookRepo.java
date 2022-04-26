@@ -14,8 +14,5 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 
 	List<Book> findByGenre(String genre);
 
-	void deleteByTitle(String title);
-
-	boolean existsByTitle(String title);
-
+	List<Book> findByAvailable(boolean available);
 }
