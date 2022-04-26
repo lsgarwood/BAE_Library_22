@@ -56,4 +56,15 @@ public class BookControllerUnitTests {
 				.andExpect(content().json(outputAsJSON));
 	}
 
+	@Test
+	public void getByIdTest() throws Exception {
+		Book entry = new Book(1L, "Willaim Golding", true, "Fiction", "Lord Of The Flies");
+		String entryAsJSON = mapper.writeValueAsString(entry);
+
+		Mockito.when(this.service.getById(1L)).thenReturn(entry);
+
+		mvc.perform(get("/books/getById/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
+				.andExpect(status().isOk()).andExpect(content().json(entryAsJSON));
+	}
+
 }
