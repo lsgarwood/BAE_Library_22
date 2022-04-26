@@ -80,4 +80,30 @@ public class BookControllerUnitTests {
 				.andExpect(status().isOk()).andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
 	}
 
+	@Test
+	public void getByAuthorTest() throws Exception {
+		Book entry = new Book(1L, "Willaim Golding", true, "Fiction", "Lord Of The Flies");
+		List<Book> output = new ArrayList<>();
+		output.add(entry);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		Mockito.when(this.service.getByAuthor("William Golding")).thenReturn(output);
+
+		mvc.perform(get("/books/getByAuthor/William Golding").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
+	}
+
+	@Test
+	public void getByAvailableTest() throws Exception {
+		Book entry = new Book(1L, "Willaim Golding", true, "Fiction", "Lord Of The Flies");
+		List<Book> output = new ArrayList<>();
+		output.add(entry);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		Mockito.when(this.service.getByAvailable(true)).thenReturn(output);
+
+		mvc.perform(get("/books/getByAvailable/true").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
+	}
+
 }
