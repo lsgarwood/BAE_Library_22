@@ -42,7 +42,7 @@ public class BookController {
 		return new ResponseEntity<Book>(service.getById(id), HttpStatus.OK);
 	}
 
-	// getByTitle - get one book by title
+	// getByTitle - get books by title
 	@GetMapping("/getByTitle/{title}") // localhost:8080/books/getByTitle/title
 	public ResponseEntity<List<Book>> getByTitle(@PathVariable String title) {
 		return new ResponseEntity<List<Book>>(service.getByTitle(title), HttpStatus.OK);
@@ -72,22 +72,10 @@ public class BookController {
 		return new ResponseEntity<Book>(service.update(id, book), HttpStatus.CREATED);
 	}
 
-//	// Put - update, search by title
-//	@PutMapping("/update/{title}") // localhost:8080/books/update/title
-//	public ResponseEntity<Book> update(@PathVariable String title, @RequestBody Book book) {
-//		return new ResponseEntity<Book>(service.update(title, book), HttpStatus.CREATED);
-//	}
-
 	// Delete book
 	@DeleteMapping("/delete/{id}") // localhost:8080/books/delete/id
 	public ResponseEntity<?> deleteById(@PathVariable long id) {
 		return (service.delete(id)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
-
-	@DeleteMapping("/deleteByTitle/{title}") // localhost:8080/books/deleteByTitle/title
-	public ResponseEntity<?> deleteByTitle(@PathVariable String title) {
-		return (service.delete(title)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
