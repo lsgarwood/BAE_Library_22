@@ -1,8 +1,12 @@
 package com.qa.library.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -37,6 +41,19 @@ public class BookControllerUnitTests {
 
 		mvc.perform(post("/books/create").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
 				.andExpect(status().isCreated()).andExpect(content().json(entryAsJSON));
+	}
+
+	@Test
+	public void getAllTest() throws Exception {
+		Book entry = new Book(1L, "Willaim Golding", true, "Fiction", "Lord Of The Flies");
+		List<Book> output = new ArrayList<>();
+		output.add(entry);
+		String outputAsJSON = mapper.writeValueAsString(output);
+
+		Mockito.when(this.service.getAll()).thenReturn(output);
+
+		mvc.perform(get("/books/getAll").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
+				.andExpect(content().json(outputAsJSON));
 	}
 
 }
