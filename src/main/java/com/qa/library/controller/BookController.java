@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qa.library.domain.Book;
+import com.qa.library.service.BookService;
 
 @RestController
 @CrossOrigin
@@ -38,7 +39,7 @@ public class BookController {
 	// GetByID - get one book by id
 	@GetMapping("/getById/{id}") // localhost:8080/books/getById/id
 	public ResponseEntity<Book> getById(@PathVariable long id) {
-		return new ResponseEntity<Book>>(service.getById(id), HttpStatus.OK);
+		return new ResponseEntity<Book>(service.getById(id), HttpStatus.OK);
 	}
 
 	// getByTitle - get one book by title
