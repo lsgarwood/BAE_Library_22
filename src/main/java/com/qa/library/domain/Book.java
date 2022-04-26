@@ -85,7 +85,7 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public String isStatus() {
+	public String getStatus() {
 		return status;
 	}
 
@@ -98,7 +98,7 @@ public class Book {
 	public String toString() {
 		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", genre=" + genre + ", status=" + status
 				+ ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getAuthor()=" + getAuthor()
-				+ ", getGenre()=" + getGenre() + ", isStatus()=" + isStatus() + ", getClass()=" + getClass()
+				+ ", getGenre()=" + getGenre() + ", isStatus()=" + getStatus() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 

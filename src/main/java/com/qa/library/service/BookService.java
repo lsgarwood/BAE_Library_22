@@ -2,11 +2,12 @@ package com.qa.library.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Service;
 
 import com.qa.library.domain.Book;
 import com.qa.library.exceptions.BookNotFoundWithIdException;
-import com.qa.library.exceptions.BookNotFoundWithTitleException;
 import com.qa.library.repo.BookRepo;
 
 @Service
@@ -37,8 +38,8 @@ public class BookService {
 	}
 
 	// get one book by title
-	public Book getByTitle(String title) {
-		return repo.findByTitle(title).orElseThrow(BookNotFoundWithTitleException::new);
+	public List<Book> getByTitle(String title) {
+		return repo.findByTitle(title); // .orElseThrow(BookNotFoundWithTitleException::new);
 
 	}
 
@@ -79,10 +80,11 @@ public class BookService {
 		return !repo.existsById(id);
 	}
 
-//	// delete by searching title
-//	public boolean delete(String title) {
-//		repo.deleteByTitle(title);
-//		return !repo.existsByTitle(title);
-//	}
+	@Transactional
+	// delete by searching title
+	public boolean delete(String title) {
+		repo.deleteByTitle(title);
+		return !repo.existsByTitle(title);
+	}
 
 }
