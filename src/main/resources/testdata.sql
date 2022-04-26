@@ -1,0 +1,1 @@
+INSERT INTO `book` (`title`, `author`, `genre`, `status`) VALUES ('Lord Of The Flies', 'Willaim Golding', 'Fiction', 'Available');

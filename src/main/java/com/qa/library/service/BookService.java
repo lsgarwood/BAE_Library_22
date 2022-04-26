@@ -5,11 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qa.library.domain.Book;
-import com.qa.library.exceptions.BookNotCreatedException;
 import com.qa.library.exceptions.BookNotFoundWithIdException;
 import com.qa.library.exceptions.BookNotFoundWithTitleException;
-import com.qa.library.exceptions.BookUpdateNotSuccessfulException;
-import com.qa.library.exceptions.BooksNotFoundByAuthorException;
 import com.qa.library.repo.BookRepo;
 
 @Service
@@ -26,7 +23,7 @@ public class BookService {
 
 	// create a new book
 	public Book create(Book book) {
-		return repo.saveAndFlush(book).orElseThrow(BookNotCreatedException::new);
+		return repo.saveAndFlush(book);// .orElseThrow(BookNotCreatedException::new);
 	}
 
 	// get all books as list
@@ -47,7 +44,7 @@ public class BookService {
 
 	// get books by author
 	public List<Book> getByAuthor(String author) {
-		return repo.findByAuthor(author).orElseThrow(BooksNotFoundByAuthorException::new);
+		return repo.findByAuthor(author);// .orElseThrow(BooksNotFoundByAuthorException::new);
 	}
 
 	// get books by genre
@@ -62,7 +59,7 @@ public class BookService {
 		existing.setAuthor(book.getAuthor());
 		existing.setGenre(book.getGenre());
 		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing).orElseThrow(BookUpdateNotSuccessfulException::new);
+		return repo.saveAndFlush(existing);// .orElseThrow(BookUpdateNotSuccessfulException::new);
 		// send new user info back
 	}
 
@@ -73,7 +70,7 @@ public class BookService {
 		existing.setAuthor(book.getAuthor());
 		existing.setGenre(book.getGenre());
 		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing).orElseThrow(BookUpdateNotSuccessfulException::new);
+		return repo.saveAndFlush(existing);// .orElseThrow(BookUpdateNotSuccessfulException::new);
 	}
 
 	// delete by searching id
@@ -82,10 +79,10 @@ public class BookService {
 		return !repo.existsById(id);
 	}
 
-	// delete by searching title
-	public boolean delete(String title) {
-		repo.deleteByTitle(title);
-		return !repo.existsByTitle(title);
-	}
+//	// delete by searching title
+//	public boolean delete(String title) {
+//		repo.deleteByTitle(title);
+//		return !repo.existsByTitle(title);
+//	}
 
 }
