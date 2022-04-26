@@ -2,6 +2,7 @@ package com.qa.library.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -64,6 +65,30 @@ public class BookControllerIntegrationTest {
 
 		mvc.perform(get("/books/getById/1").contentType(MediaType.APPLICATION_JSON).content(resultAsJSON))
 				.andExpect(status().isOk()).andExpect(content().json(resultAsJSON));
+	}
+
+	@Test
+	public void checkInTest() throws Exception {
+		Book entry = new Book("William Golding", false, "Fiction", "Lord Of The Flies");
+		String entryAsJSON = mapper.writeValueAsString(entry);
+
+		Book result = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		String resultAsJSON = mapper.writeValueAsString(result);
+
+		mvc.perform(put("/books/checkIn/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
+				.andExpect(status().isCreated()).andExpect(content().json(resultAsJSON));
+	}
+
+	@Test
+	public void checkOutTest() throws Exception {
+		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+		String entryAsJSON = mapper.writeValueAsString(entry);
+
+		Book result = new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies");
+		String resultAsJSON = mapper.writeValueAsString(result);
+
+		mvc.perform(put("/books/checkOut/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
+				.andExpect(status().isCreated()).andExpect(content().json(resultAsJSON));
 	}
 
 }
