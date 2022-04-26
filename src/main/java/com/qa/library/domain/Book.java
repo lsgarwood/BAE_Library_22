@@ -1,5 +1,7 @@
 package com.qa.library.domain;
 
+import java.util.Objects;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -92,7 +94,31 @@ public class Book {
 	}
 
 	// Generate toString()
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", genre=" + genre + ", status=" + status
+				+ ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getAuthor()=" + getAuthor()
+				+ ", getGenre()=" + getGenre() + ", isStatus()=" + isStatus() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 
 	// Generate hashCode() and equals()
+	@Override
+	public int hashCode() {
+		return Objects.hash(author, genre, id, status, title);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		return Objects.equals(author, other.author) && Objects.equals(genre, other.genre) && id == other.id
+				&& status == other.status && Objects.equals(title, other.title);
+	}
 
 }
