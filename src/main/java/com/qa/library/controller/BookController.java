@@ -66,7 +66,7 @@ public class BookController {
 		return new ResponseEntity<Book>(service.create(book), HttpStatus.CREATED);
 	}
 
-	// Put - update, search by id
+	// Put - update availability, search by id
 	@PutMapping("/update/{id}") // localhost:8080/books/update/id
 	public ResponseEntity<Book> update(@PathVariable long id, @RequestBody Book book) {
 		return new ResponseEntity<Book>(service.update(id, book), HttpStatus.CREATED);

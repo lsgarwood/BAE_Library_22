@@ -4,6 +4,6 @@ CREATE TABLE book (
 	title VARCHAR(255) NOT NULL,
 	author VARCHAR(255) NOT NULL,
 	genre VARCHAR(255) UNIQUE NOT NULL,
-	status VARCHAR(255),
+	available BOOLEAN,
 	primary key (id)
 );
