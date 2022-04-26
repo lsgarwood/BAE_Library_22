@@ -8,8 +8,6 @@ import com.qa.library.domain.Book;
 import com.qa.library.exceptions.BookNotCreatedException;
 import com.qa.library.exceptions.BookNotFoundWithIdException;
 import com.qa.library.exceptions.BookNotFoundWithTitleException;
-import com.qa.library.exceptions.BookUpdateNotSuccessfulException;
-import com.qa.library.exceptions.BooksNotFoundByAuthorException;
 import com.qa.library.repo.BookRepo;
 
 @Service
@@ -47,7 +45,7 @@ public class BookService {
 
 	// get books by author
 	public List<Book> getByAuthor(String author) {
-		return repo.findByAuthor(author).orElseThrow(BooksNotFoundByAuthorException::new);
+		return repo.findByAuthor(author);// .orElseThrow(BooksNotFoundByAuthorException::new);
 	}
 
 	// get books by genre
@@ -62,7 +60,7 @@ public class BookService {
 		existing.setAuthor(book.getAuthor());
 		existing.setGenre(book.getGenre());
 		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing).orElseThrow(BookUpdateNotSuccessfulException::new);
+		return repo.saveAndFlush(existing);// .orElseThrow(BookUpdateNotSuccessfulException::new);
 		// send new user info back
 	}
 
@@ -73,7 +71,7 @@ public class BookService {
 		existing.setAuthor(book.getAuthor());
 		existing.setGenre(book.getGenre());
 		existing.setStatus(book.getGenre());
-		return repo.saveAndFlush(existing).orElseThrow(BookUpdateNotSuccessfulException::new);
+		return repo.saveAndFlush(existing);// .orElseThrow(BookUpdateNotSuccessfulException::new);
 	}
 
 	// delete by searching id
@@ -83,9 +81,9 @@ public class BookService {
 	}
 
 	// delete by searching title
-	public boolean delete(String title) {
-		repo.deleteByTitle(title);
-		return !repo.existsByTitle(title);
-	}
+//	public boolean delete(String title) {
+//		repo.deleteByTitle(title);
+//		return !repo.existsByTitle(title);
+//	}
 
 }
