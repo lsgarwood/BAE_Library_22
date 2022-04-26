@@ -44,8 +44,8 @@ public class BookController {
 
 	// getByTitle - get one book by title
 	@GetMapping("/getByTitle/{title}") // localhost:8080/books/getByTitle/title
-	public ResponseEntity<Book> getByTitle(@PathVariable String title) {
-		return new ResponseEntity<Book>(service.getByTitle(title), HttpStatus.OK);
+	public ResponseEntity<List<Book>> getByTitle(@PathVariable String title) {
+		return new ResponseEntity<List<Book>>(service.getByTitle(title), HttpStatus.OK);
 	}
 
 	// getByAuthor - get books by author list
@@ -72,11 +72,11 @@ public class BookController {
 		return new ResponseEntity<Book>(service.update(id, book), HttpStatus.CREATED);
 	}
 
-	// Put - update, search by title
-	@PutMapping("/update/{title}") // localhost:8080/books/update/title
-	public ResponseEntity<Book> update(@PathVariable String title, @RequestBody Book book) {
-		return new ResponseEntity<Book>(service.update(title, book), HttpStatus.CREATED);
-	}
+//	// Put - update, search by title
+//	@PutMapping("/update/{title}") // localhost:8080/books/update/title
+//	public ResponseEntity<Book> update(@PathVariable String title, @RequestBody Book book) {
+//		return new ResponseEntity<Book>(service.update(title, book), HttpStatus.CREATED);
+//	}
 
 	// Delete book
 	@DeleteMapping("/delete/{id}") // localhost:8080/books/delete/id
