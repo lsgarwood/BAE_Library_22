@@ -85,10 +85,10 @@ public class BookController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@DeleteMapping("/delete/{title}") // localhost:8080/books/delete/ititle
-	public ResponseEntity<?> deleteByTitle(@PathVariable String title) {
-		return (service.delete(title)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
-				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//	@DeleteMapping("/delete/{title}") // localhost:8080/books/delete/title
+//	public ResponseEntity<?> deleteByTitle(@PathVariable String title) {
+//		return (service.delete(title)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+//				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 
 }
