@@ -60,6 +60,12 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(service.getByGenre(genre), HttpStatus.OK);
 	}
 
+	// getByAvailability
+	@GetMapping("/getByAvailable/{available}")
+	public ResponseEntity<List<Book>> getByAvailability(@PathVariable boolean available) {
+		return new ResponseEntity<List<Book>>(service.getByAvailable(available), HttpStatus.OK);
+	}
+
 	// Post
 	@PostMapping("/create") // localhost:8080/books/create
 	public ResponseEntity<Book> create(@RequestBody Book book) {

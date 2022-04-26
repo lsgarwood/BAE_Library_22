@@ -51,6 +51,11 @@ public class BookService {
 		return repo.findByGenre(genre);
 	}
 
+	// get books by availability
+	public List<Book> getByAvailable(boolean available) {
+		return repo.findByAvailable(available);
+	}
+
 	// update a book by searching id
 	public Book update(long id, Book book) {
 		Book existing = repo.findById(id).get();
