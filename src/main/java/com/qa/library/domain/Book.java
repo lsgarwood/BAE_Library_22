@@ -27,12 +27,69 @@ public class Book {
 	private boolean status;
 
 	// Default Constructor
+	public Book() {
+		super();
+	}
 
 	// Constructors for Creating/Inserting
+	public Book(String title, String author, String genre, boolean status) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.genre = genre;
+		this.status = status;
+	}
 
 	// Used for reading/selecting (and testing)
+	public Book(long id, String title, String author, String genre, boolean status) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.author = author;
+		this.genre = genre;
+		this.status = status;
+	}
 
 	// Getters and Setters
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+
+	public String getGenre() {
+		return genre;
+	}
+
+	public void setGenre(String genre) {
+		this.genre = genre;
+	}
+
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
 	// Generate toString()
 
