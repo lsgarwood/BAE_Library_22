@@ -26,33 +26,33 @@ public class Book {
 	private String genre;
 
 	@Column(nullable = false)
-	private String status;
+	private boolean available;
 
-	// Default Constructor
+	// default constructor
 	public Book() {
 		super();
 	}
 
-	// Constructors for Creating/Inserting
-	public Book(String title, String author, String genre, String status) {
+	// constructors used for crud
+	public Book(String title, String author, String genre, boolean available) {
 		super();
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
-		this.status = status;
+		this.available = available;
 	}
 
-	// Used for reading/selecting (and testing)
-	public Book(long id, String title, String author, String genre, String status) {
+	// constructors for reading and testing
+	public Book(long id, String title, String author, String genre, boolean available) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.genre = genre;
-		this.status = status;
+		this.available = available;
 	}
 
-	// Getters and Setters
+	// getters and setters
 	public long getId() {
 		return id;
 	}
@@ -85,27 +85,27 @@ public class Book {
 		this.genre = genre;
 	}
 
-	public String getStatus() {
-		return status;
+	public boolean isAvailable() {
+		return available;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setAvailable(boolean available) {
+		this.available = available;
 	}
 
-	// Generate toString()
+	// tostring
 	@Override
 	public String toString() {
-		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", genre=" + genre + ", status=" + status
-				+ ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getAuthor()=" + getAuthor()
-				+ ", getGenre()=" + getGenre() + ", isStatus()=" + getStatus() + ", getClass()=" + getClass()
+		return "Book [id=" + id + ", title=" + title + ", author=" + author + ", genre=" + genre + ", available="
+				+ available + ", getId()=" + getId() + ", getTitle()=" + getTitle() + ", getAuthor()=" + getAuthor()
+				+ ", getGenre()=" + getGenre() + ", isAvailable()=" + isAvailable() + ", getClass()=" + getClass()
 				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
-	// Generate hashCode() and equals()
+	// hashcode and equals
 	@Override
 	public int hashCode() {
-		return Objects.hash(author, genre, id, status, title);
+		return Objects.hash(author, available, genre, id, title);
 	}
 
 	@Override
@@ -117,8 +117,8 @@ public class Book {
 		if (getClass() != obj.getClass())
 			return false;
 		Book other = (Book) obj;
-		return Objects.equals(author, other.author) && Objects.equals(genre, other.genre) && id == other.id
-				&& status == other.status && Objects.equals(title, other.title);
+		return Objects.equals(author, other.author) && available == other.available
+				&& Objects.equals(genre, other.genre) && id == other.id && Objects.equals(title, other.title);
 	}
 
 }
