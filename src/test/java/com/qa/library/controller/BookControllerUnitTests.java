@@ -145,11 +145,18 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void deleteBookTest() throws Exception {
-
-		Mockito.when(this.service.deleteBook(1l)).thenReturn(true);
+		Mockito.when(this.service.deleteBook(1L)).thenReturn(true);
 
 		mvc.perform(delete("/books/deleteBook/1").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isNoContent());
+	}
+
+	@Test
+	public void deleteBookFailTest() throws Exception {
+		Mockito.when(this.service.deleteBook(2L)).thenReturn(false);
+
+		mvc.perform(delete("/books/deleteBook/2").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isInternalServerError());
 	}
 
 }
