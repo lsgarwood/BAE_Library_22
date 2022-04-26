@@ -71,7 +71,7 @@ public class BookService {
 	}
 
 	// delete by searching id
-	public boolean delete(long id) {
+	public boolean deleteBook(long id) {
 		repo.deleteById(id);
 		return !repo.existsById(id);
 	}

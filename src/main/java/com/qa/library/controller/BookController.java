@@ -60,7 +60,7 @@ public class BookController {
 		return new ResponseEntity<List<Book>>(service.getByGenre(genre), HttpStatus.OK);
 	}
 
-	// getByAvailability
+	// getByAvailable
 	@GetMapping("/getByAvailable/{available}")
 	public ResponseEntity<List<Book>> getByAvailable(@PathVariable boolean available) {
 		return new ResponseEntity<List<Book>>(service.getByAvailable(available), HttpStatus.OK);
@@ -85,9 +85,9 @@ public class BookController {
 	}
 
 	// Delete book
-	@DeleteMapping("/delete/{id}") // localhost:8080/books/delete/id
-	public ResponseEntity<?> deleteById(@PathVariable long id) {
-		return (service.delete(id)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
+	@DeleteMapping("/deleteBook/{id}") // localhost:8080/books/deleteBook/id
+	public ResponseEntity<?> deleteBook(@PathVariable long id) {
+		return (service.deleteBook(id)) ? new ResponseEntity<>(HttpStatus.NO_CONTENT)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 

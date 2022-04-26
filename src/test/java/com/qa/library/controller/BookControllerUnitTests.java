@@ -1,7 +1,9 @@
 package com.qa.library.controller;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -104,6 +106,37 @@ public class BookControllerUnitTests {
 
 		mvc.perform(get("/books/getByAvailable/true").contentType(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk()).andExpect(status().isOk()).andExpect(content().json(outputAsJSON));
+	}
+
+	@Test
+	public void checkInTest() throws Exception {
+		Book entry = new Book("Willaim Golding", false, "Fiction", "Lord Of The Flies");
+		String entryAsJSON = mapper.writeValueAsString(entry);
+
+		Mockito.when(this.service.checkIn(1L, entry)).thenReturn(entry);
+
+		mvc.perform(put("/books/checkIn/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
+				.andExpect(status().isCreated()).andExpect(content().json(entryAsJSON));
+	}
+
+	@Test
+	public void checkOutTest() throws Exception {
+		Book entry = new Book("Willaim Golding", true, "Fiction", "Lord Of The Flies");
+		String entryAsJSON = mapper.writeValueAsString(entry);
+
+		Mockito.when(this.service.checkOut(1L, entry)).thenReturn(entry);
+
+		mvc.perform(put("/books/checkOut/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
+				.andExpect(status().isCreated()).andExpect(content().json(entryAsJSON));
+	}
+
+	@Test
+	public void deleteBookTest() throws Exception {
+
+		Mockito.when(this.service.deleteBook(1l)).thenReturn(true);
+
+		mvc.perform(delete("/books/deleteBook/1").contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isNoContent());
 	}
 
 }
