@@ -48,4 +48,26 @@ public class BookService {
 	public List<Book> getByGenre(String genre) {
 		return repo.findByGenre(genre).orElseThrow(BooksNotFoundByGenreException::new);
 	}
+
+	// update a book by searching id
+	public Book update(long id, Book book) {
+		Book existing = repo.findById(id).get(); // get existing book
+		existing.setTitle(book.getTitle()); // change existing data to new
+		existing.setAuthor(book.getAuthor());
+		existing.setGenre(book.getGenre());
+		existing.setStatus(book.getGenre());
+		return repo.saveAndFlush(existing).orElseThrow(BookUpdateUnsuccessfullException::new);
+		// send new user info back
+	}
+
+	// update a book by searching title
+	public Book update(String title, Book book) {
+		Book existing = repo.findByTitle(title).get(); // get existing book
+		existing.setTitle(book.getTitle()); // change existing data to new
+		existing.setAuthor(book.getAuthor());
+		existing.setGenre(book.getGenre());
+		existing.setStatus(book.getGenre());
+		return repo.saveAndFlush(existing).orElseThrow(BookUpdateUnsuccessfullException::new);
+	}
+
 }
