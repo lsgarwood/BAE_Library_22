@@ -21,7 +21,7 @@ public class BookService {
 	}
 
 	// create a new book
-	public Book create(Book book) {
+	public Book createBook(Book book) {
 		return repo.saveAndFlush(book);
 	}
 

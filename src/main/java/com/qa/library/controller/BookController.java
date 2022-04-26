@@ -67,9 +67,9 @@ public class BookController {
 	}
 
 	// Post
-	@PostMapping("/create") // localhost:8080/books/create
-	public ResponseEntity<Book> create(@RequestBody Book book) {
-		return new ResponseEntity<Book>(service.create(book), HttpStatus.CREATED);
+	@PostMapping("/createBook") // localhost:8080/books/createBook
+	public ResponseEntity<Book> createBook(@RequestBody Book book) {
+		return new ResponseEntity<Book>(service.createBook(book), HttpStatus.CREATED);
 	}
 
 	// Put - update available to true, search by id
