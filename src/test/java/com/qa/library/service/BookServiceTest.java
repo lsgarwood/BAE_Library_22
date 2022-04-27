@@ -1,10 +1,12 @@
 package com.qa.library.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -110,27 +112,27 @@ public class BookServiceTest {
 // 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
 // 	}
 
-//	@Test
-// 	public void checkInTest() {
-// 		Book input = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
-// 		Book output = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
-//
-// 		Mockito.when(this.repo.findById(1L)).thenReturn(output);
-// 		Mockito.when(this.repo.saveAndFlush(output)).thenReturn(output);
-//
-// 		assertEquals(output, this.service.update(1L, input));
-//
-// 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-// 		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(output);
-// 	}
+	@Test
+	public void checkInTest() {
+		Book existing = new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies");
+		Book updated = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(Optional.of(existing));
+		Mockito.when(this.repo.save(updated)).thenReturn(updated);
+
+		assertThat(this.service.checkIn(1L, new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies")))
+				.isEqualTo(updated);
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
+	}
 
 //	@Test
 // 	public void checkOutTest() {
-// 		User input = new User("Tom", "Jones", "tjones1");
-// 		Optional<User> existing = Optional.of(new User(1L, "Jim", "Jones", "jjones1"));
+// 		User input = new User(1L, "Tom", "Jones", "tjones1");
 // 		User output = new User(1L, "Tom", "Jones", "tjones1");
 //
-// 		Mockito.when(this.repo.findById(1L)).thenReturn(existing);
+// 		Mockito.when(this.repo.findById(1L)).thenReturn(optional.of);
 // 		Mockito.when(this.repo.saveAndFlush(output)).thenReturn(output);
 //
 // 		assertEquals(output, this.service.update(1L, input));

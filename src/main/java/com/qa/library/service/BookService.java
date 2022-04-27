@@ -60,7 +60,7 @@ public class BookService {
 	public Book checkIn(long id, Book book) {
 		Book existing = repo.findById(id).get();
 		existing.setAvailable(true);
-		return repo.saveAndFlush(existing);
+		return repo.save(existing);
 	}
 
 	// update a book by searching id
