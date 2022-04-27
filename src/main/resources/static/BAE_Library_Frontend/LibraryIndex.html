@@ -14,7 +14,7 @@
 <body>
     <!-- TITLE - IMG OVERLAY -->
     <div class="header">
-        <img src="./LibraryImages/bookspines.jpeg" alt="Image of book spines">
+        <img style="max-width: 100%" src="./LibraryImages/bookspines.jpeg" alt="Image of book spines">
         <div class="header-title">
             <h1 class="display-1"><strong>Lauren's Library</strong></h1>
         </div>
@@ -26,7 +26,7 @@
             <div id="crud-panel" class="col-sm-4">
                 <!-- SEARCH (GET/READ) CRITERIA - BY TITLE/AUTHOR/GENRE/ID  -->
                 <h4 style="text-align:center">Search</h4>
-                <form id="search-el">
+                <form id="search-form-el">
                     <div class="row">
                         <div class="col-2" for="search-by-title">Title</div>
                         <div class="col-8"><input type="text" id="search-title"></div>
@@ -42,7 +42,7 @@
                     <div class="row">
                         <div class="col-2" for="search-by-genre">Genre</div>
                         <div class="col-8">
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select id="serach-genre-select" class="form-select form-select-sm" aria-label=".form-select-sm example">
                                 <option selected>Select Genre</option>
                                 <option value="romance">Self-Help</option>
                                 <option value="classic">Fiction</option>
@@ -57,11 +57,8 @@
                         <div class="col-8"><input type="text" id="search-author"></div>
                         <div class="col-2"><button id="search-by-title" class="btn btn-secondary btn-sm" type="button">Search</button></div>
                     </div>
-                    <div class="d-grid gap-2" id="search-all-button">
-                        <button class="btn btn-secondary btn-sm" type="button" style="text-align:center">Search All</button>
-                    </div>
                     <div class="d-grid gap-2" id="clear-button">
-                        <button class="btn btn-secondary btn-sm" type="button" style="text-align:center">Clear Search</button>
+                        <button class="btn btn-secondary btn-sm" type="button" style="text-align:center">Clear Searches</button>
                     </div>
                 </form>
                 <br>
@@ -80,7 +77,7 @@
                     <div class="row">
                         <div class="col-2"><label for="donate-genre">Genre</label></div>
                         <div class="col-8">
-                            <select id="add-genre" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                            <select id="add-genre-select" class="form-select form-select-sm" aria-label=".form-select-sm example">
                                 <option selected>Select Genre</option>
                                 <option value="romance">Self-Help</option>
                                 <option value="classic">Fiction</option>
@@ -98,7 +95,7 @@
                 </form>
                 <br>
                 <h4 style="text-align:center">Return</h4>
-                <form id="return-el">
+                <form id="return-form-el">
                     <div class="row">
                         <div class="col-2"><label for="return-book">ID</label></div>
                         <div class="col-8"><input type="text" id="return-id"></div>
@@ -107,7 +104,7 @@
                 </form>
                 <br>
                 <h4 style="text-align:center">Report a Lost Book</h4>
-                <form id="report-el">
+                <form id="report-form-el">
                     <div class="row">
                         <div class="col-2"><label>ID</label></div>
                         <div class="col-8"><input type="text" id="report-id"></div>
@@ -124,15 +121,15 @@
                 <!-- WHERE BOOK CARDS WILL BE STORED IN GRID -->
                 <div class="container">
                     <div class="row row-cols-1 row-cols-md-3 g-4">
-                        <!-- INDIVIDUAL BOOK CARD -->
+                        <!-- INDIVIDUAL BOOK CARD 
                         <div id="book-card" class="col-4 card text-center h-50">
                             <span id="book-card-banner" class="badge bg-danger"></span>
                             <img id="book-card-img" src="" height="350px" class="card-img-top" alt="">
                             <div id="book-card-body" class="card-body">
-                                <h5 id="book-card-title" class="card-title"></h5>
-                                <p id="book-card-author" class="card-text"></p>
-                                <p id="book-card-genre" class="card-text"></p>
-                                <p id="book-card-id" class="card-text"></p>
+                                <h5 id="card-title" class="card-title"></h5>
+                                <p id="card-author" class="card-text"></p>
+                                <p id="card-genre" class="card-text"></p>
+                                <p id="book-id" class="card-text"></p>
                                 <a id="loan-book" href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#loan-modal">Loan</a>
                                 <a id="review-book" href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#review-modal">Review</a>
@@ -159,7 +156,6 @@
                                                 <h5 class="modal-title" id="exampleModalLabel">Loan Logged</h5>
                                             </div>
                                             <div id="modal-body-loan" class="modal-body">
-                                                <!-- WORK TO DO -->
                                                 **want to add a form of user details..and 2nd modal window when complete**
                                             </div>
                                             <div class="modal-footer">
@@ -171,7 +167,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

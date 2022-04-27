@@ -6,6 +6,7 @@ body {
     position: relative;
     color: white;
     padding-bottom: 25px;
+    max-width: 100%
 }
 
 .header-title {
