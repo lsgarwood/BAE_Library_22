@@ -56,10 +56,10 @@
                 <br>
                 <h4 style="text-align:center">Donate</h4>
                 <form id="donate-form-el">
-                    <input type="text" class="form-control mb-2" placeholder="Enter Title" aria-label="" aria-describedby="button-addon2">
-                    <input type="text" class="form-control mb-2" placeholder="Enter Title" aria-label="" aria-describedby="button-addon2">
+                    <input id="add-title" type="text" class="form-control mb-2" placeholder="Enter Title" aria-label="" aria-describedby="button-addon2">
+                    <input id="add-author" type="text" class="form-control mb-2" placeholder="Enter Author" aria-label="" aria-describedby="button-addon2">
                     <div class="input-group mb-2">
-                        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                        <select id="add-genre" class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
                             <option selected>Select Genre</option>
                             <option value="1">Self-Help</option>
                             <option value="2">Biography</option>
@@ -67,26 +67,26 @@
                             <option value="3">Non-Fiction</option>
                         </select>
                     </div>
-                    <input type="text" class="form-control mb-2" placeholder="Enter Title" aria-label="" aria-describedby="button-addon2">
+                    <input id="add-image" type="text" class="form-control mb-2" placeholder="Enter Img Url" aria-label="" aria-describedby="button-addon2">
                     <div class="">
-                        <textarea class="form-control mb-2" placeholder="Write Review" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        <textarea id="add-review" class="form-control mb-2" placeholder="Write Review" id="exampleFormControlTextarea1" rows="3"></textarea>
                     </div>
-                    <div class="d-grid gap-2" id="clear-button">
-                        <button class="btn btn-secondary" type="button" style="text-align:center">Donate</button>
+                    <div class="d-grid mb-2" id="donate-button">
+                        <button id="add-button" class="btn btn-secondary" type="button" style="text-align:center">Donate</button>
                     </div>
                 </form>
                 <br>
                 <h4 style="text-align:center">Return</h4>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" placeholder="Enter Book Id" aria-label="" aria-describedby="button-addon2">
-                    <button class="btn btn-secondary" type="button" id="button-addon2">Return</button>
+                    <button class="btn btn-secondary" type="button" id="return-button">Return</button>
                 </div>
                 <br>
-                <h4 style="text-align:center">Remove Book</h4>
+                <h4 style="text-align:center">Remove</h4>
                 <div class="input-group mb-2">
                     <input type="text" class="form-control" placeholder="Enter Book Id" aria-label=""
                         aria-describedby="button-addon2">
-                    <button class="btn btn-secondary" type="button" id="button-addon2">Remove</button>
+                    <button class="btn btn-secondary" type="button" id="remove-button">Remove</button>
                 </div>
             </div>
             

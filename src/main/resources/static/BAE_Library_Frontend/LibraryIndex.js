@@ -40,7 +40,7 @@ const renderBookCard = (book) => {
     bookColumn.classList.add("col");
     
     const bookCard = document.createElement('div');
-    kittenCard.classList.add("card");
+    bookCard.classList.add("card");
     bookColumn.appendChild(bookCard);
     
     const newBook = document.createElement('div');
