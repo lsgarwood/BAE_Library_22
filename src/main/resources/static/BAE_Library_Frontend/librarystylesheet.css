@@ -1,0 +1,17 @@
+body {
+    padding-bottom: 25px;
+}
+
+.header {
+    position: relative;
+    color: white;
+    padding-bottom: 25px;
+}
+
+.header-title {
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
