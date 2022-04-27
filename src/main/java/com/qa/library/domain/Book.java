@@ -17,16 +17,16 @@ public class Book {
 	private long id;
 
 	@Column(nullable = false)
-	private String title;
+	private String author;
 
 	@Column(nullable = false)
-	private String author;
+	private boolean available;
 
 	@Column(nullable = false)
 	private String genre;
 
 	@Column(nullable = false)
-	private boolean available;
+	private String title;
 
 	// default constructor
 	public Book() {
@@ -34,22 +34,22 @@ public class Book {
 	}
 
 	// constructors used for crud
-	public Book(String title, String author, String genre, boolean available) {
+	public Book(String author, boolean available, String genre, String title) {
 		super();
-		this.title = title;
 		this.author = author;
-		this.genre = genre;
 		this.available = available;
+		this.genre = genre;
+		this.title = title;
 	}
 
 	// constructors for reading and testing
-	public Book(long id, String title, String author, String genre, boolean available) {
+	public Book(long id, String author, boolean available, String genre, String title) {
 		super();
 		this.id = id;
-		this.title = title;
 		this.author = author;
-		this.genre = genre;
 		this.available = available;
+		this.genre = genre;
+		this.title = title;
 	}
 
 	// getters and setters

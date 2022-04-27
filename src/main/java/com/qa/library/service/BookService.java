@@ -21,7 +21,7 @@ public class BookService {
 	}
 
 	// create a new book
-	public Book create(Book book) {
+	public Book createBook(Book book) {
 		return repo.saveAndFlush(book);
 	}
 
@@ -71,7 +71,7 @@ public class BookService {
 	}
 
 	// delete by searching id
-	public boolean delete(long id) {
+	public boolean deleteBook(long id) {
 		repo.deleteById(id);
 		return !repo.existsById(id);
 	}
