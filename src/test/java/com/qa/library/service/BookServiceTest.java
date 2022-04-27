@@ -26,9 +26,6 @@ public class BookServiceTest {
 	@MockBean
 	private BookRepo repo;
 
-	// -------TRIED TO WORK THESE OUT BY FOLLOWING EXAMPLES FROM AL'S GITHUB HENCE
-	// COPIED CODE BELOW--------//
-
 	@Test
 	public void createBookTest() {
 		Book input = new Book("William Golding", true, "Fiction", "Lord Of The Flies");

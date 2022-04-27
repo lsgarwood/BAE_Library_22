@@ -51,10 +51,9 @@ const renderBookCard = (book) => {
     bookCardBanner.classList.add("card-banner")
     newBook.appendChild(bookCardBanner);
 
-    // const bookCardImage = document.createElement("card-img");
-    // bookCardImage.  = book.image;
-    // bookCardBanner.classList.add("card-banner")
-    // newBook.appendChild(bookCardBanner);
+    const bookCardImage = document.createElement("card-img");
+    bookCardImage.  
+    newBook.appendChild(bookCardBanner);
     
     const bookTitle = document.createElement("h5");
     bookTitle.innerText = book.title;
@@ -79,13 +78,13 @@ const renderBookCard = (book) => {
     const loanButton = document.createElement('loan-book');
     loanButton.innerText = "Loan";
     loanButton.classList.add("btn", "btn-primary");
-    loanButton.addEventListener('click', () => loanBook(book.available));
+    loanButton.addEventListener('click', () => updateBannerLoan(book.available));
     newBook.appendChild(loanButton);
     bookCard.appendChild(newBook);
 
     const reviewButton = document.createElement('review-book');
     reviewButton.innerText = "Review";
-    reviewButton.classList.add("btn", "btn-primary");
+    reviewButton.classList.add("btn", "btn-secondary", "btn-sm");
     reviewButton.addEventListener('click', () => reviewBook(book.id));
    
     clearSearchesEl.appendChild(bookColumn);
@@ -145,6 +144,12 @@ const createNewBook = () => {
 
 // "/checkIn/{id}" - update by id
 
+
 // "/checkOut/{id}" - update by id
+const updateBannerLoan() {
+
+
+  
+}
 
 // "/deleteBook/{id}" - delete
