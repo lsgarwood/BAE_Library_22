@@ -20,13 +20,43 @@
         </div>
     </div>
 
+    <!-- LEFT HAND CRUD PANEL -->
     <div class="container">
         <div class="row">
             <div id="crud-panel" class="col-sm-4">
+                <h4 style="text-align:center">Search</h4>
+                <form id="search-el">
 
+                </form>
+                <h4 style="text-align:center">Donate</h4>
+                <form id="donate-form-el">
+
+                </form>
+                <h4 style="text-align:center">Return</h4>
+                <form id="return-el">
+
+                </form>
+                <h4 style="text-align:center">Report a Lost Book</h4>
+                <form id="report-el">
+
+                </form>
             </div>
+            
+            <!-- RIGHT HAND BROWSER WINDOW - ALL BOOKS DISPLAYED UNTIL FILTERED BY SEARCHES -->
             <div id="browser-window-el" class="col-8">
+                <!-- SEARCH RESULT NUM DISPLAYED -->
+                <p id="search-result-num-msg" style="font-size:15px;">0 search results</p>
+                <!-- WHERE BOOK CARDS WILL BE STORED IN GRID -->
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <!-- INDIVIDUAL BOOK CARD -->
+                        <div id="book-card" class="col-4 card text-center h-50">
+
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
     </div>
 
