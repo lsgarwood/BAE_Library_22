@@ -4,21 +4,12 @@
     const searchByAuthor = document.querySelector("#search-by-author");
     const searchByGenre = document.querySelector("#search-by-genre");
     const searchById = document.querySelector("#search-by-id");
-    // const clearSearchesEl = document.querySelector("#getAllBooks");
+  
     const searchResultNumMessage = document.querySelector("#serach-result-num-msg");
     const donateBook = document.querySelector("#donate-book");
     const returnBook = document.querySelector("#return-book");
     const reportBook = document.querySelector("#report-book");
-    //const loanBook = document.querySelector("#loan-book");
-
-    // const bookCardCreate = document.createElement("#book-card");
-    //const bookCardBannerEl = document.createElement("#card-banner");
-    //const bookCardImageEl = document.createElement("#card-img");
-    //const bookCardTitleEl = document.createElement("#card-title");
-    // const bookCardAuthorEl = document.createElement("#card-author");
-    //const bookCardGenreEl = document.createElement("#card-genre");
-    // const bookCardIdEl = document.createElement("#card-id");
-
+  
 
 const baseURL = "http://localhost:8080";
 
