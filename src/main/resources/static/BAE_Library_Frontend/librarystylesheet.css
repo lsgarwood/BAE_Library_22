@@ -37,9 +37,12 @@ body {
     width: 100%;
 }
 
-#return-id,
-#return-title {
+#return-id {
     width: 100%;
+}
+
+#report-id {
+    width: 100%
 }
 
 #book-card {
