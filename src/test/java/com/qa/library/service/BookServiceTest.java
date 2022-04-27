@@ -50,16 +50,16 @@ public class BookServiceTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 
-//	@Test
-//	public void getByIdTest() {
-//		Book book = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
-//
-//		Mockito.when(this.repo.findById(1L)).thenReturn(book);
-//
-//		assertEquals(output, this.service.getById(1L));
-//
-//		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-//	}
+	@Test
+	public void getByIdTest() {
+		Book book = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(Optional.of(book));
+
+		assertEquals(book, this.service.getById(1L));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+	}
 
 	@Test
 	public void getByTitleTest() {
