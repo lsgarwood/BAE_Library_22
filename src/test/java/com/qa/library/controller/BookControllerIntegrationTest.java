@@ -38,10 +38,10 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void createBookTest() throws Exception {
-		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
-		Book result = new Book(2L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book result = new Book(2L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String resultAsJSON = mapper.writeValueAsString(result);
 
 		mvc.perform(post("/books/createBook").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
@@ -50,7 +50,7 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void getAllTest() throws Exception {
-		Book book = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book book = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(book);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -61,7 +61,7 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void getByIdTest() throws Exception {
-		Book result = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book result = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String resultAsJSON = mapper.writeValueAsString(result);
 
 		mvc.perform(get("/books/getById/1").contentType(MediaType.APPLICATION_JSON).content(resultAsJSON))
@@ -70,7 +70,7 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void getByTitleTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -81,7 +81,7 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void getByAuthorTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -92,7 +92,7 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void getByAvailableTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -103,7 +103,7 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void getByGenreTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -114,10 +114,10 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void checkInTest() throws Exception {
-		Book entry = new Book("William Golding", false, "Fiction", "Lord Of The Flies");
+		Book entry = new Book("William Golding", false, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
-		Book result = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book result = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String resultAsJSON = mapper.writeValueAsString(result);
 
 		mvc.perform(put("/books/checkIn/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))
@@ -126,10 +126,10 @@ public class BookControllerIntegrationTest {
 
 	@Test
 	public void checkOutTest() throws Exception {
-		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
-		Book result = new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies");
+		Book result = new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies", "", "");
 		String resultAsJSON = mapper.writeValueAsString(result);
 
 		mvc.perform(put("/books/checkOut/1").contentType(MediaType.APPLICATION_JSON).content(entryAsJSON))

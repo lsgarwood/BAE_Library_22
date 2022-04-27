@@ -36,7 +36,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void createBookTest() throws Exception {
-		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
 		Mockito.when(this.service.createBook(entry)).thenReturn(entry);
@@ -47,7 +47,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void getAllTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -60,7 +60,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void getByIdTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
 		Mockito.when(this.service.getById(1L)).thenReturn(entry);
@@ -71,7 +71,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void getByTitleTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -84,7 +84,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void getByAuthorTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -97,7 +97,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void getByAvailableTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -110,7 +110,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void getByGenreTest() throws Exception {
-		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		List<Book> output = new ArrayList<>();
 		output.add(entry);
 		String outputAsJSON = mapper.writeValueAsString(output);
@@ -123,7 +123,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void checkInTest() throws Exception {
-		Book entry = new Book("William Golding", false, "Fiction", "Lord Of The Flies");
+		Book entry = new Book("William Golding", false, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
 		Mockito.when(this.service.checkIn(1L, entry)).thenReturn(entry);
@@ -134,7 +134,7 @@ public class BookControllerUnitTests {
 
 	@Test
 	public void checkOutTest() throws Exception {
-		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+		Book entry = new Book("William Golding", true, "Fiction", "Lord Of The Flies", "", "");
 		String entryAsJSON = mapper.writeValueAsString(entry);
 
 		Mockito.when(this.service.checkOut(1L, entry)).thenReturn(entry);
