@@ -15,3 +15,34 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+.row {
+    padding: 5px;
+}
+
+#search-all-button,
+#clear-button {
+    padding: 3px;
+}
+
+#search-author,
+#search-id,
+#search-title {
+    width: 100%;
+}
+
+#add-id,
+#add-author,
+#add-title {
+    width: 100%;
+}
+
+#return-id,
+#return-title {
+    width: 100%;
+}
+
+#book-card {
+    size: 200px;
+    padding: 15px;
+}

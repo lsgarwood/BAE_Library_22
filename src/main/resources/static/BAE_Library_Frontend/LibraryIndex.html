@@ -26,20 +26,92 @@
             <div id="crud-panel" class="col-sm-4">
                 <h4 style="text-align:center">Search</h4>
                 <form id="search-el">
-
+                    <div class="row">
+                        <div class="col-2" for="search-by-title">Title</div>
+                        <div class="col-8"><input type="text" id="search-title"></div>
+                        <div class="col-2"><button id="search-by-title" class="btn btn-secondary btn-sm" type="button"
+                                style="text-align:center">Search</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" for="search-by-id">ID</div>
+                        <div class="col-8"><input type="text" id="search-id"></div>
+                        <div class="col-2"><button id="search-by-id" class="btn btn-secondary btn-sm" type="button"
+                                style="text-align:center">Search</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" for="search-by-genre">Genre</div>
+                        <div class="col-8">
+                            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>Select Genre</option>
+                                <option value="romance">Self-Help</option>
+                                <option value="classic">Fiction</option>
+                                <option value="fantasy">Non-Fiction</option>
+                                <option value="biography">Biography</option>
+                            </select>
+                        </div>
+                        <div class="col-2"><button id="search-by-genre" class="btn btn-secondary btn-sm" type="button">Search</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2" for="searh-by-author">Author</div>
+                        <div class="col-8"><input type="text" id="search-author"></div>
+                        <div class="col-2"><button id="search-by-title" class="btn btn-secondary btn-sm" type="button">Search</button></div>
+                    </div>
+                    <div class="d-grid gap-2" id="search-all-button">
+                        <button class="btn btn-secondary btn-sm" type="button" style="text-align:center">Search All</button>
+                    </div>
+                    <div class="d-grid gap-2" id="clear-button">
+                        <button class="btn btn-secondary btn-sm" type="button" style="text-align:center">Clear Search</button>
+                    </div>
                 </form>
                 <h4 style="text-align:center">Donate</h4>
                 <form id="donate-form-el">
-
+                    <div class="row">
+                        <div class="col-2"><label for="donate-title">Title</label></div>
+                        <div class="col-8"><input type="text" id="add-title"></div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="donate-author">Author</label></div>
+                        <div class="col-8"><input type="text" id="add-author"></div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="donate-genre">Genre</label></div>
+                        <div class="col-8">
+                            <select id="add-genre" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                                <option selected>Select Genre</option>
+                                <option value="romance">Self-Help</option>
+                                <option value="classic">Fiction</option>
+                                <option value="fantasy">Non-Fiction</option>
+                                <option value="biography">Biography</option>
+                            </select>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-2"><label for="donate-id">ID</label></div>
+                        <div class="col-8"><input type="text" name="id" id="add-id"></div>
+                        <div class="col-2"><button id="donate-book" class="btn btn-secondary btn-sm" type="button">Donate</button></div>
+                    </div>
                 </form>
                 <h4 style="text-align:center">Return</h4>
                 <form id="return-el">
-
+                    <div class="row">
+                        <div class="col-2"><label for="return-book">ID</label></div>
+                        <div class="col-8"><input type="text" id="return-id"></div>
+                        <div class="col-2"><button id="return-book" class="btn btn-secondary btn-sm" type="button">Return</button></div>
+                    </div>
                 </form>
+                <br>
                 <h4 style="text-align:center">Report a Lost Book</h4>
                 <form id="report-el">
-
+                    <div class="row">
+                        <div class="col-2"><label>ID</label></div>
+                        <div class="col-8"><input type="text" id="report-id"></div>
+                        <div class="col-2"><button id="report-book" class="btn btn-secondary btn-sm" type="button">Report</button></div>
+                    </div>
                 </form>
+                <br>
             </div>
             
             <!-- RIGHT HAND BROWSER WINDOW - ALL BOOKS DISPLAYED UNTIL FILTERED BY SEARCHES -->
@@ -51,7 +123,17 @@
                     <div class="row row-cols-1 row-cols-md-3 g-4">
                         <!-- INDIVIDUAL BOOK CARD -->
                         <div id="book-card" class="col-4 card text-center h-50">
-
+                            <span id="book-card-banner" class="badge bg-danger"></span>
+                            <img id="book-card-img" src="" height="350px" class="card-img-top" alt="">
+                            <div id="book-card-body" class="card-body">
+                                <h5 id="book-card-title" class="card-title"></h5>
+                                <p id="book-card-author" class="card-text"></p>
+                                <p id="book-card-genre" class="card-text"></p>
+                                <p id="book-card-id" class="card-text"></p>
+                                <a id="loan-book" href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#loan-modal">Loan</a>
+                                <a id="review-book" href="#" class="btn btn-secondary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#review-modal">Review</a>
+                            </div>
                         </div>
                     </div>
                 </div>
