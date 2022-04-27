@@ -50,16 +50,16 @@ public class BookServiceTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findAll();
 	}
 
-//	@Test
-//	public void getByIdTest() {
-//		Book book = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
-//
-//		Mockito.when(this.repo.findById(1L)).thenReturn(book);
-//
-//		assertEquals(output, this.service.getById(1L));
-//
-//		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-//	}
+	@Test
+	public void getByIdTest() {
+		Book book = new Book("William Golding", true, "Fiction", "Lord Of The Flies");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(Optional.of(book));
+
+		assertEquals(book, this.service.getById(1L));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+	}
 
 	@Test
 	public void getByTitleTest() {
@@ -85,29 +85,29 @@ public class BookServiceTest {
 		Mockito.verify(this.repo, Mockito.times(1)).findByAuthor("William Golding");
 	}
 
-//	@Test
-// 	public void getByGenreTest() {
-// 		Optional<User> OptionalOutput = Optional.of(new User(1L, "Tom", "Jones", "tjones1"));
-// 		User output = new User(1L, "Tom", "Jones", "tjones1");
-//
-// 		Mockito.when(this.repo.findById(1L)).thenReturn(OptionalOutput);
-//
-// 		assertEquals(output, this.service.getById(1L));
-//
-// 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-// 	}
+	@Test
+	public void getByGenreTest() {
+		List<Book> output = new ArrayList<>();
+		output.add(new Book("William Golding", true, "Fiction", "Lord Of The Flies"));
 
-//	@Test
-// 	public void getByAvailableTest() {
-// 		Optional<User> OptionalOutput = Optional.of(new User(1L, "Tom", "Jones", "tjones1"));
-// 		User output = new User(1L, "Tom", "Jones", "tjones1");
-//
-// 		Mockito.when(this.repo.findById(1L)).thenReturn(OptionalOutput);
-//
-// 		assertEquals(output, this.service.getById(1L));
-//
-// 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-// 	}
+		Mockito.when(this.repo.findByGenre("Fiction")).thenReturn(output);
+
+		assertEquals(output, this.service.getByGenre("Fiction"));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByGenre("Fiction");
+	}
+
+	@Test
+	public void getByAvailableTest() {
+		List<Book> output = new ArrayList<>();
+		output.add(new Book("William Golding", true, "Fiction", "Lord Of The Flies"));
+
+		Mockito.when(this.repo.findByAvailable(true)).thenReturn(output);
+
+		assertEquals(output, this.service.getByAvailable(true));
+
+		Mockito.verify(this.repo, Mockito.times(1)).findByAvailable(true);
+	}
 
 	@Test
 	public void checkInTest() {
@@ -124,19 +124,20 @@ public class BookServiceTest {
 		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
 	}
 
-//	@Test
-// 	public void checkOutTest() {
-// 		User input = new User(1L, "Tom", "Jones", "tjones1");
-// 		User output = new User(1L, "Tom", "Jones", "tjones1");
-//
-// 		Mockito.when(this.repo.findById(1L)).thenReturn(optional.of);
-// 		Mockito.when(this.repo.saveAndFlush(output)).thenReturn(output);
-//
-// 		assertEquals(output, this.service.update(1L, input));
-//
-// 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-// 		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(output);
-// 	}
+	@Test
+	public void checkOutTest() {
+		Book existing = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book updated = new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(Optional.of(existing));
+		Mockito.when(this.repo.save(updated)).thenReturn(updated);
+
+		assertThat(this.service.checkOut(1L, new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies")))
+				.isEqualTo(updated);
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
+	}
 
 	@Test
 	public void deleteBookTest() {
