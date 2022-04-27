@@ -124,19 +124,20 @@ public class BookServiceTest {
 		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
 	}
 
-//	@Test
-// 	public void checkOutTest() {
-// 		User input = new User(1L, "Tom", "Jones", "tjones1");
-// 		User output = new User(1L, "Tom", "Jones", "tjones1");
-//
-// 		Mockito.when(this.repo.findById(1L)).thenReturn(optional.of);
-// 		Mockito.when(this.repo.saveAndFlush(output)).thenReturn(output);
-//
-// 		assertEquals(output, this.service.update(1L, input));
-//
-// 		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
-// 		Mockito.verify(this.repo, Mockito.times(1)).saveAndFlush(output);
-// 	}
+	@Test
+	public void checkOutTest() {
+		Book existing = new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies");
+		Book updated = new Book(1L, "William Golding", false, "Fiction", "Lord Of The Flies");
+
+		Mockito.when(this.repo.findById(1L)).thenReturn(Optional.of(existing));
+		Mockito.when(this.repo.save(updated)).thenReturn(updated);
+
+		assertThat(this.service.checkOut(1L, new Book(1L, "William Golding", true, "Fiction", "Lord Of The Flies")))
+				.isEqualTo(updated);
+
+		Mockito.verify(this.repo, Mockito.times(1)).findById(1L);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updated);
+	}
 
 	@Test
 	public void deleteBookTest() {

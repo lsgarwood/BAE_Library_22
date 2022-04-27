@@ -67,7 +67,7 @@ public class BookService {
 	public Book checkOut(long id, Book book) {
 		Book existing = repo.findById(id).get();
 		existing.setAvailable(false);
-		return repo.saveAndFlush(existing);
+		return repo.save(existing);
 	}
 
 	// delete by searching id
