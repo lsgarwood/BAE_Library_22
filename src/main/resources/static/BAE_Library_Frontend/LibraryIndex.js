@@ -1,13 +1,3 @@
-// const searchByTitle = document.querySelector("#search-by-title");
-// const searchByAuthor = document.querySelector("#search-by-author");
-// const searchByGenre = document.querySelector("#search-by-genre");
-// const searchById = document.querySelector("#search-by-id");
-
-// const searchResultNumMessage = document.querySelector("#serach-result-num-msg");
-// const donateBook = document.querySelector("#donate-book");
-// const returnBook = document.querySelector("#return-book");
-//const reportBook = document.querySelector("#report-book");
-
 const baseURL = "http://localhost:8080"; 
 
 axios.get(`${baseURL}/`)
@@ -16,9 +6,8 @@ axios.get(`${baseURL}/`)
             console.log("DATA: ", res.data);
         }).catch(err => console.log(err)); // handle error
 
-    console.log("Library Initialising....");
+console.log("Library Initialising....");
 
-const clearSearchesGetAll = document.querySelector("clearSearchesGetAll");
 const bookId = document.querySelector("#book-id");
 
 const getAllBooks = () => {
@@ -27,7 +16,6 @@ const getAllBooks = () => {
         .get(`${baseURL}/books/getAll`)
         .then(res => {
             const books = res.data;
-            clearSearchesGetAll.innerHTML = ""; // blanks an element
             books.forEach(book => renderBooks(book));
         }).catch(err => console.log(err));
     }
