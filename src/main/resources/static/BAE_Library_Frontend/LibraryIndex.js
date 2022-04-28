@@ -1,6 +1,7 @@
 const baseURL = "http://localhost:8080"; 
 
-axios.get(`${baseURL}/`)
+    axios
+        .get(`${baseURL}/books/getAll`)
         .then(res => { // handle response with callback
             console.log(res);
             console.log("DATA: ", res.data);
@@ -8,6 +9,7 @@ axios.get(`${baseURL}/`)
 
 console.log("Library Initialising....");
 
+const showOutput = document.querySelector("#getAllOutput");
 const bookId = document.querySelector("#book-id");
 
 const getAllBooks = () => {
@@ -16,11 +18,12 @@ const getAllBooks = () => {
         .get(`${baseURL}/books/getAll`)
         .then(res => {
             const books = res.data;
-            books.forEach(book => renderBooks(book));
+            getAllOutput.innerHTML = "";
+            books.forEach(book => renderBook(book, swhowOutput));
         }).catch(err => console.log(err));
     }
 
-const renderBooks = (book) => {   
+const renderBook = (book) => {   
     const bookColumn = document.createElement('div');
     bookColumn.classList.add("col");
     
@@ -42,10 +45,10 @@ const renderBooks = (book) => {
     }
     bookCardBanner.appendChild(bookCardBanner);
 
-    const bookImage = document.createElement("img");
-    bookImage.classList.add("card-img-top");
-    bookImage.src = `&{book.addImage}`;
-    newBook.appendChild(bookCardImage);
+    // const bookImage = document.createElement("img");
+    // bookImage.classList.add("card-img-top");
+    // bookImage.src = `&{book.addImage}`;
+    // newBook.appendChild(bookCardImage);
     
     const bookTitle = document.createElement("h5");
     bookTitle.innerText = book.title;
@@ -70,30 +73,53 @@ const renderBooks = (book) => {
     const loanButton = document.createElement('loan-book');
     loanButton.innerText = "Loan";
     loanButton.classList.add("btn", "btn-primary");
-    loanButton.addEventListener('click', () => updateBannerLoan(book.available));
+    loanButton.addEventListener('click', () => checkOut(book.id));
     newBook.appendChild(loanButton);
     bookCard.appendChild(newBook);
 
     const reviewButton = document.createElement('review-book');
     reviewButton.innerText = "Review";
-    reviewButton.classList.add("btn", "btn-secondary", "btn-sm");
+    reviewButton.classList.add("btn", "btn-secondary");
     reviewButton.addEventListener('click', () => reviewBook(book.id));
-   
-    clearSearchesEl.appendChild(bookColumn);
+    newBook.appendChild(reviewButton);
+    bookCard.appendChild(newBook);
+    
+    getAllBooks.appendChild(bookColumn);
+}
+
+const reviewBook = id => {
 
 }
+
 // "/createBook"- donate book
-//const createNewBook = () => {
-//    axios 
-//        .post(`${baseURL}/books/createBook`), {
-//             title:"",
-//             author: "",
-//             genre: "",
-//             available: ""
-//        }
-//        .then(res => showAll(res))
-//        .catch(err => alert(err));
-// }
+document.querySelector("input# > form").addEventListener('add-button', (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const data = {
+        title: form.title.value,
+        author: form.author.value,
+        genre: form.genre.value,
+        id: form.id.value,
+        url: form.url.value,
+        review: form.review.value
+    }
+
+    console.log("DATA: ", data);
+
+    axios
+        .post(`${baseURL}/books/createBook`, data)
+        .then((res) => {
+        console.log(res);
+        getAllBooks();
+
+        form.reset(); //resets form
+        form.title.focus(); // selects the name input
+    }).catch(err => console.log(err));
+});
+
+getAllBooks();
 
 // "/getByTitle/{title}" - search by title
 function searchResultsByTitle() {
@@ -118,7 +144,7 @@ function searchResultsByGenre() {
 
     axios
         .get(`${baseURL}/books/getByGenre/genre`)
-        .then(res => showSearchResults(res))
+        .then(res => getAllOutput(res))
         .catch(err => alert(err));
 }
 
@@ -127,11 +153,21 @@ function searchResultsById() {
     
     axios
         .get(`${baseURL}/books/getById/id`)
-        .then(res => showSearchResults(res))
+        .then(res => getAllOutput(res))
         .catch(err => alert(err));
 }
 
 // "/getByAvailable/{available}" - serach by available
 // "/checkIn/{id}" - by id
-// "/checkOut/{id}" - updateid
+
+// "/checkOut/{id}" - update
+const checkOut = id => {
+
+    axios
+        .put(`${baseURL}/books/checkOut/id`)
+        .then(res => {
+            
+        })
+
+}
 // "/deleteBook/{id}" - delete
