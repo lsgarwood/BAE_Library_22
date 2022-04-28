@@ -55,7 +55,7 @@ const renderBook = (book) => {
     newBook.appendChild(bookAuthor);
     
     const bookGenre = document.createElement("p");
-    bookGenre.innerText = book.author;
+    bookGenre.innerText = book.genre;
     bookGenre.classList.add("card-text");
     newBook.appendChild(bookGenre);
     
@@ -80,12 +80,12 @@ const renderBook = (book) => {
 }
 
 //review 
-const reviewBook = id => {
+// const reviewBook = id => {
 
-    axios
-        .get(`${baseURL}/books/getReview`);
-//         .then
-}
+//     axios
+//         .get(`${baseURL}/books/getReview`);
+// //         .then
+// }
 
 // "/createBook"- donate book
 document.querySelector("#donate-form").addEventListener("submit", (e) => {
@@ -98,6 +98,7 @@ document.querySelector("#donate-form").addEventListener("submit", (e) => {
         author: form.author.value,
         genre: form.genre.value,
         id: form.id.value,
+        available: false,
         url: form.image.value,
         review: form.review.value
     }
@@ -194,5 +195,6 @@ document.querySelector("#remove-button").addEventListener("click", (e) => {
         .then(res => {
             console.log(res);
             getAllBooks();
+            id.delete();
         }).catch(err => console.log(err));
     });
