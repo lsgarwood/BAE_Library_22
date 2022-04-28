@@ -9,7 +9,7 @@ const baseURL = "http://localhost:8080";
 
 console.log("Library Initialising....");
 
-const showOutput = document.querySelector("#getAllOutput");
+const showOutput = document.querySelector("#showOutput");
 const bookId = document.querySelector("#book-id");
 
 const getAllBooks = () => {
@@ -18,37 +18,30 @@ const getAllBooks = () => {
         .get(`${baseURL}/books/getAll`)
         .then(res => {
             const books = res.data;
-            getAllOutput.innerHTML = "";
-            books.forEach(book => renderBook(book, swhowOutput));
+            showOutput.innerHTML = "";
+            books.forEach(book => renderBook(book, showOutput));
         }).catch(err => console.log(err));
     }
 
 const renderBook = (book) => {   
     const bookColumn = document.createElement('div');
-    bookColumn.classList.add("col");
+    bookColumn.classList.add("col", "card", "text-center", "h-50");
     
-    const bookCard = document.createElement('div');
-    bookCard.classList.add("card");
-    bookColumn.appendChild(bookCard);
+    // const bookCard = document.createElement('div');
+    // bookCard.classList.add("col-4", "card", "text-center", "h-50");
+    // bookColumn.appendChild(bookCard);
     
-    const bookBody = document.createElement('div');
-    bookBody.classList.add("card-body");
+    const newBook = document.createElement('div');
+    newBook.classList.add("card-body");
 
     const bookCardBanner = document.createElement("span");
-    bookCardBanner.classList.add("card-banner ")
-    if (book.isAvailable) {
-        bookCardBanner.innerText = "Available" ;
-        bookCardBanner.classList.add("btn btn-success")
-    } else {
-        bookCardBanner.innerTest = "On-Loan";
-        bookCardBanner.classList.add("btn btn-danger")
-    }
-    bookCardBanner.appendChild(bookCardBanner);
+    bookCardBanner.classList.add("badge", "bg-danger")
+    newBook.appendChild(bookCardBanner);
 
     // const bookImage = document.createElement("img");
     // bookImage.classList.add("card-img-top");
     // bookImage.src = `&{book.addImage}`;
-    // newBook.appendChild(bookCardImage);
+    // newBook.appendChild(bookImage);
     
     const bookTitle = document.createElement("h5");
     bookTitle.innerText = book.title;
@@ -57,42 +50,45 @@ const renderBook = (book) => {
     
     const bookAuthor = document.createElement("p");
     bookAuthor.innerText = book.author;
-    bookAuthor.classList.add("card-author");
+    bookAuthor.classList.add("card-text");
     newBook.appendChild(bookAuthor);
     
     const bookGenre = document.createElement("p");
     bookGenre.innerText = book.author;
-    bookGenre.classList.add("card-genre");
+    bookGenre.classList.add("card-text");
     newBook.appendChild(bookGenre);
     
     const bookCardId = document.createElement("p");
     bookCardId.innerText = book.id;
-    bookCardId.classList.add("card-id");
+    bookCardId.classList.add("card-text");
     newBook.appendChild(bookCardId);
-    
+
     const loanButton = document.createElement('loan-book');
     loanButton.innerText = "Loan";
-    loanButton.classList.add("btn", "btn-primary");
+    loanButton.classList.add("btn", "btn-secondary");
     loanButton.addEventListener('click', () => checkOut(book.id));
     newBook.appendChild(loanButton);
-    bookCard.appendChild(newBook);
+    newBook.appendChild(loanButton);
 
     const reviewButton = document.createElement('review-book');
     reviewButton.innerText = "Review";
     reviewButton.classList.add("btn", "btn-secondary");
     reviewButton.addEventListener('click', () => reviewBook(book.id));
     newBook.appendChild(reviewButton);
-    bookCard.appendChild(newBook);
+    newBook.appendChild(reviewButton);
     
-    getAllBooks.appendChild(bookColumn);
+    showOutput.appendChild(bookColumn);
 }
 
 const reviewBook = id => {
 
+    axios
+        .get(`${baseURL}/books/getReview`);
+//         .then
 }
 
 // "/createBook"- donate book
-document.querySelector("input# > form").addEventListener('add-button', (e) => {
+document.querySelector("#showOutput").addEventListener('add-button', (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -149,7 +145,7 @@ function searchResultsByGenre() {
 }
 
 // "/getById/{id}" search by id
-function searchResultsById() {
+function getById() {
     
     axios
         .get(`${baseURL}/books/getById/id`)
@@ -171,3 +167,11 @@ const checkOut = id => {
 
 }
 // "/deleteBook/{id}" - delete
+const deleteBook = id => {
+    axios
+        .delete(`${baseURL}/books/delete/id`)
+        .then(res => {
+            console.log(res);
+            getAllBooks();
+        }).catch(err => console.log(err));
+}
