@@ -1,20 +1,16 @@
+// const searchByTitle = document.querySelector("#search-by-title");
+// const searchByAuthor = document.querySelector("#search-by-author");
+// const searchByGenre = document.querySelector("#search-by-genre");
+// const searchById = document.querySelector("#search-by-id");
 
+// const searchResultNumMessage = document.querySelector("#serach-result-num-msg");
+// const donateBook = document.querySelector("#donate-book");
+// const returnBook = document.querySelector("#return-book");
+//const reportBook = document.querySelector("#report-book");
 
-    const searchByTitle = document.querySelector("#search-by-title");
-    const searchByAuthor = document.querySelector("#search-by-author");
-    const searchByGenre = document.querySelector("#search-by-genre");
-    const searchById = document.querySelector("#search-by-id");
-  
-    const searchResultNumMessage = document.querySelector("#serach-result-num-msg");
-    const donateBook = document.querySelector("#donate-book");
-    const returnBook = document.querySelector("#return-book");
-    const reportBook = document.querySelector("#report-book");
-  
+const baseURL = "http://localhost:8080"; 
 
-const baseURL = "http://localhost:8080";
-
-    axios
-        .get(`${baseURL}/`)
+axios.get(`${baseURL}/`)
         .then(res => { // handle response with callback
             console.log(res);
             console.log("DATA: ", res.data);
@@ -22,38 +18,46 @@ const baseURL = "http://localhost:8080";
 
     console.log("Library Initialising....");
 
-const clearSearchesEl = document.querySelector("#getAllBooks");
-const BookId = document.querySelector("#book-id");
+const clearSearchesGetAll = document.querySelector("clearSearchesGetAll");
+const bookId = document.querySelector("#book-id");
+
 const getAllBooks = () => {
    
     axios
         .get(`${baseURL}/books/getAll`)
         .then(res => {
             const books = res.data;
-            clearSearchesEl.innerHTML = ""; // blanks an element
-            books.forEach(book => renderBookCard(book, clearSearchesEl));
+            clearSearchesGetAll.innerHTML = ""; // blanks an element
+            books.forEach(book => renderBooks(book));
         }).catch(err => console.log(err));
-}
+    }
 
-const renderBookCard = (book) => {   
+const renderBooks = (book) => {   
     const bookColumn = document.createElement('div');
     bookColumn.classList.add("col");
     
     const bookCard = document.createElement('div');
-    kittenCard.classList.add("card");
+    bookCard.classList.add("card");
     bookColumn.appendChild(bookCard);
     
-    const newBook = document.createElement('div');
-    newBook.classList.add("card-body");
+    const bookBody = document.createElement('div');
+    bookBody.classList.add("card-body");
 
     const bookCardBanner = document.createElement("span");
-    bookCardBanner.innerText = book.available;
-    bookCardBanner.classList.add("card-banner")
-    newBook.appendChild(bookCardBanner);
+    bookCardBanner.classList.add("card-banner ")
+    if (book.isAvailable) {
+        bookCardBanner.innerText = "Available" ;
+        bookCardBanner.classList.add("btn btn-success")
+    } else {
+        bookCardBanner.innerTest = "On-Loan";
+        bookCardBanner.classList.add("btn btn-danger")
+    }
+    bookCardBanner.appendChild(bookCardBanner);
 
-    const bookCardImage = document.createElement("card-img");
-    bookCardImage.  
-    newBook.appendChild(bookCardBanner);
+    const bookImage = document.createElement("img");
+    bookImage.classList.add("card-img-top");
+    bookImage.src = `&{book.addImage}`;
+    newBook.appendChild(bookCardImage);
     
     const bookTitle = document.createElement("h5");
     bookTitle.innerText = book.title;
@@ -88,7 +92,20 @@ const renderBookCard = (book) => {
     reviewButton.addEventListener('click', () => reviewBook(book.id));
    
     clearSearchesEl.appendChild(bookColumn);
+
 }
+// "/createBook"- donate book
+//const createNewBook = () => {
+//    axios 
+//        .post(`${baseURL}/books/createBook`), {
+//             title:"",
+//             author: "",
+//             genre: "",
+//             available: ""
+//        }
+//        .then(res => showAll(res))
+//        .catch(err => alert(err));
+// }
 
 // "/getByTitle/{title}" - search by title
 function searchResultsByTitle() {
@@ -127,29 +144,6 @@ function searchResultsById() {
 }
 
 // "/getByAvailable/{available}" - serach by available
-
-// "/createBook"- donate book
-const createNewBook = () => {
-   axios 
-       .post(`${baseURL}/books/createBook`), {
-            title:"",
-            author: "",
-            genre: "",
-            id: ,
-            available: ""
-       }
-       .then(res => showAll(res))
-       .catch(err => alert(err));
-}
-
-// "/checkIn/{id}" - update by id
-
-
-// "/checkOut/{id}" - update by id
-const updateBannerLoan() {
-
-
-  
-}
-
+// "/checkIn/{id}" - by id
+// "/checkOut/{id}" - updateid
 // "/deleteBook/{id}" - delete

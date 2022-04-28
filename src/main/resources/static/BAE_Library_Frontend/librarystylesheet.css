@@ -4,9 +4,9 @@ body {
 
 .header {
     position: relative;
-    color: white;
     padding-bottom: 25px;
-    max-width: 100%
+    max-width: 100%;
+    color: white;
 }
 
 .header-title {
@@ -17,36 +17,26 @@ body {
     transform: translate(-50%, -50%);
 }
 
+#header-img {
+    opacity: 0.8;
+}
+
 .row {
     padding: 5px;
 }
 
-#search-all-button,
-#clear-button {
+#card-imag-top {
+    height: 350px;
+}
+
+#clear-button,
+#donate-button {
     padding: 3px;
-}
-
-#search-author,
-#search-id,
-#search-title {
-    width: 100%;
-}
-
-#add-id,
-#add-author,
-#add-title {
-    width: 100%;
-}
-
-#return-id {
-    width: 100%;
-}
-
-#report-id {
     width: 100%
 }
 
 #book-card {
     size: 200px;
     padding: 15px;
+    text-align: center;
 }
