@@ -25,6 +25,10 @@ body {
     padding: 5px;
 }
 
+#card-imag-top {
+    height: 350px;
+}
+
 #clear-button,
 #donate-button {
     padding: 3px;
@@ -34,4 +38,5 @@ body {
 #book-card {
     size: 200px;
     padding: 15px;
+    text-align: center;
 }
