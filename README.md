@@ -51,11 +51,12 @@ As per the brief of the project I used the following:
 - Build Tool: Maven
 - Unit & Integration Testing: JUnit, Mockito
 
-## Project Screenshots ##
+## Project Documentation ##
 
-Please find all screenshots of my application endpoints within the documentation folder
-- Jira & GitHub
-- Design & Endpoints (Integration and Unit Testing, Postman, MySQL Workbench & API)
+Please find all required documentation for my application build within the documentation folder:
+- Peresentation slides in .pdf format
+- Jira & GitHub screenshots
+- Design & Endpoints screenshots (Integration and Unit Testing, Postman, MySQL Workbench & API)
 
 ## Imporvements ##
 - My frontend really let my project down, an now I see that the order in which I worked could have been better. I was definitely avoiding doing the Javascript as I was not very confident with that, but that just led me into over developing other areas and then the functionality was lacking in the end product, but it was too late. It would have been better if I had concentrated on the CRUD functionality to meet MVP first, then I could have built it up from there.
