@@ -98,7 +98,7 @@ document.querySelector("#donate-form").addEventListener("submit", (e) => {
         author: form.author.value,
         genre: form.genre.value,
         id: form.id.value,
-        available: false,
+        available: true,
         url: form.image.value,
         review: form.review.value
     }
@@ -195,6 +195,5 @@ document.querySelector("#remove-button").addEventListener("click", (e) => {
         .then(res => {
             console.log(res);
             getAllBooks();
-            id.delete();
         }).catch(err => console.log(err));
     });
