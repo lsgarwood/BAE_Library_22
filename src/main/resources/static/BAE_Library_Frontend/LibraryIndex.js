@@ -1,24 +1,15 @@
-// const searchByTitle = document.querySelector("#search-by-title");
-// const searchByAuthor = document.querySelector("#search-by-author");
-// const searchByGenre = document.querySelector("#search-by-genre");
-// const searchById = document.querySelector("#search-by-id");
-
-// const searchResultNumMessage = document.querySelector("#serach-result-num-msg");
-// const donateBook = document.querySelector("#donate-book");
-// const returnBook = document.querySelector("#return-book");
-//const reportBook = document.querySelector("#report-book");
-
 const baseURL = "http://localhost:8080"; 
 
-axios.get(`${baseURL}/`)
+    axios
+        .get(`${baseURL}/books/getAll`)
         .then(res => { // handle response with callback
             console.log(res);
             console.log("DATA: ", res.data);
         }).catch(err => console.log(err)); // handle error
 
-    console.log("Library Initialising....");
+console.log("Library Initialising....");
 
-const clearSearchesGetAll = document.querySelector("clearSearchesGetAll");
+const showOutput = document.querySelector("#showOutput");
 const bookId = document.querySelector("#book-id");
 
 const getAllBooks = () => {
@@ -27,12 +18,12 @@ const getAllBooks = () => {
         .get(`${baseURL}/books/getAll`)
         .then(res => {
             const books = res.data;
-            clearSearchesGetAll.innerHTML = ""; // blanks an element
-            books.forEach(book => renderBooks(book));
+            showOutput.innerHTML = "";
+            books.forEach(book => renderBook(book, showOutput));
         }).catch(err => console.log(err));
     }
 
-const renderBooks = (book) => {   
+const renderBook = (book) => {   
     const bookColumn = document.createElement('div');
     bookColumn.classList.add("col");
     
@@ -40,24 +31,18 @@ const renderBooks = (book) => {
     bookCard.classList.add("card");
     bookColumn.appendChild(bookCard);
     
-    const bookBody = document.createElement('div');
-    bookBody.classList.add("card-body");
+    const newBook = document.createElement('div');
+    newBook.classList.add("card-body", "text-center");
+    bookCard.appendChild(newBook);
 
-    const bookCardBanner = document.createElement("span");
-    bookCardBanner.classList.add("card-banner ")
-    if (book.isAvailable) {
-        bookCardBanner.innerText = "Available" ;
-        bookCardBanner.classList.add("btn btn-success")
-    } else {
-        bookCardBanner.innerTest = "On-Loan";
-        bookCardBanner.classList.add("btn btn-danger")
-    }
-    bookCardBanner.appendChild(bookCardBanner);
+    const bookBanner = document.createElement("span");
+    bookBanner.classList.add("badge", "bg-danger")
+    newBook.appendChild(bookBanner);
 
-    const bookImage = document.createElement("img");
-    bookImage.classList.add("card-img-top");
-    bookImage.src = `&{book.addImage}`;
-    newBook.appendChild(bookCardImage);
+    // const bookImage = document.createElement("img");
+    // bookImage.classList.add("card-img-top");
+    // bookImage.src = `&{book.addImage}`;
+    // newBook.appendChild(bookImage);
     
     const bookTitle = document.createElement("h5");
     bookTitle.innerText = book.title;
@@ -66,46 +51,72 @@ const renderBooks = (book) => {
     
     const bookAuthor = document.createElement("p");
     bookAuthor.innerText = book.author;
-    bookAuthor.classList.add("card-author");
+    bookAuthor.classList.add("card-text");
     newBook.appendChild(bookAuthor);
     
     const bookGenre = document.createElement("p");
-    bookGenre.innerText = book.author;
-    bookGenre.classList.add("card-genre");
+    bookGenre.innerText = book.genre;
+    bookGenre.classList.add("card-text");
     newBook.appendChild(bookGenre);
     
     const bookCardId = document.createElement("p");
     bookCardId.innerText = book.id;
-    bookCardId.classList.add("card-id");
+    bookCardId.classList.add("card-text");
     newBook.appendChild(bookCardId);
-    
+
     const loanButton = document.createElement('loan-book');
     loanButton.innerText = "Loan";
-    loanButton.classList.add("btn", "btn-primary");
-    loanButton.addEventListener('click', () => updateBannerLoan(book.available));
+    loanButton.classList.add("btn", "btn-secondary");
+    loanButton.addEventListener('click', () => checkOut(book.id));
     newBook.appendChild(loanButton);
-    bookCard.appendChild(newBook);
 
     const reviewButton = document.createElement('review-book');
     reviewButton.innerText = "Review";
-    reviewButton.classList.add("btn", "btn-secondary", "btn-sm");
+    reviewButton.classList.add("btn", "btn-secondary");
     reviewButton.addEventListener('click', () => reviewBook(book.id));
-   
-    clearSearchesEl.appendChild(bookColumn);
-
+    newBook.appendChild(reviewButton);
+    
+    showOutput.appendChild(bookColumn);
 }
-// "/createBook"- donate book
-//const createNewBook = () => {
-//    axios 
-//        .post(`${baseURL}/books/createBook`), {
-//             title:"",
-//             author: "",
-//             genre: "",
-//             available: ""
-//        }
-//        .then(res => showAll(res))
-//        .catch(err => alert(err));
+
+//review 
+// const reviewBook = id => {
+
+//     axios
+//         .get(`${baseURL}/books/getReview`);
+// //         .then
 // }
+
+// "/createBook"- donate book
+document.querySelector("#donate-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+
+    const data = {
+        title: form.title.value,
+        author: form.author.value,
+        genre: form.genre.value,
+        id: form.id.value,
+        available: true,
+        url: form.image.value,
+        review: form.review.value
+    }
+
+    console.log("DATA: ", data);
+
+    axios
+        .post(`${baseURL}/books/createBook`, data)
+        .then((res) => {
+        console.log(res);
+        getAllBooks();
+
+        form.reset(); //resets form
+        form.title.focus(); // selects the name input
+    }).catch(err => console.log(err));
+});
+
+getAllBooks();
 
 // "/getByTitle/{title}" - search by title
 function searchResultsByTitle() {
@@ -130,20 +141,59 @@ function searchResultsByGenre() {
 
     axios
         .get(`${baseURL}/books/getByGenre/genre`)
-        .then(res => showSearchResults(res))
+        .then(res => getAllOutput(res))
         .catch(err => alert(err));
 }
 
 // "/getById/{id}" search by id
-function searchResultsById() {
+function getById() {
     
     axios
         .get(`${baseURL}/books/getById/id`)
-        .then(res => showSearchResults(res))
+        .then(res => getAllOutput(res))
         .catch(err => alert(err));
 }
 
 // "/getByAvailable/{available}" - serach by available
 // "/checkIn/{id}" - by id
-// "/checkOut/{id}" - updateid
+
+document.querySelector("#return-button").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const id = document.querySelector("#return-input").value;
+
+    const data = {
+        title: "body bug fix"
+    }
+
+    axios
+        .put(`${baseURL}/books/checkIn/${id}`, data)
+        .then(res => {
+            console.log(res);
+            getAllBooks();
+        }).catch(err => console.log(err));
+    });
+
+// "/checkOut/{id}" - update
+// const checkOut = id => {
+
+//     axios
+//         .put(`${baseURL}/books/checkOut/id`)
+//         .then(res => {
+            
+//         })
+
+// }
 // "/deleteBook/{id}" - delete
+document.querySelector("#remove-button").addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const id = document.querySelector("#remove-input").value;
+
+    axios
+        .delete(`${baseURL}/books/deleteBook/${id}`)
+        .then(res => {
+            console.log(res);
+            getAllBooks();
+        }).catch(err => console.log(err));
+    });
