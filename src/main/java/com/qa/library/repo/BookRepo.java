@@ -15,4 +15,5 @@ public interface BookRepo extends JpaRepository<Book, Long> {
 	List<Book> findByGenre(String genre);
 
 	List<Book> findByAvailable(boolean available);
+
 }

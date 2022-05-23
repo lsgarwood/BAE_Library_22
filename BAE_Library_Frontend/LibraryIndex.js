@@ -1,3 +1,4 @@
+
 const baseURL = "http://localhost:8080"; 
 
     axios
@@ -9,8 +10,9 @@ const baseURL = "http://localhost:8080";
 
 console.log("Library Initialising....");
 
-const showOutput = document.querySelector("#showOutput");
+const showOutput = document.querySelector("#show-output");
 const bookId = document.querySelector("#book-id");
+const setResultMessage = document.querySelector('#search-result-num-msg');
 
 const getAllBooks = () => {
    
@@ -19,6 +21,7 @@ const getAllBooks = () => {
         .then(res => {
             const books = res.data;
             showOutput.innerHTML = "";
+            setResultMessage.innerHTML = `Your search returned ${books.length} results`;
             books.forEach(book => renderBook(book, showOutput));
         }).catch(err => console.log(err));
     }
@@ -36,13 +39,13 @@ const renderBook = (book) => {
     bookCard.appendChild(newBook);
 
     const bookBanner = document.createElement("span");
-    bookBanner.classList.add("badge", "bg-danger")
+    bookBanner.classList.add("badge")
     newBook.appendChild(bookBanner);
 
-    // const bookImage = document.createElement("img");
-    // bookImage.classList.add("card-img-top");
-    // bookImage.src = `&{book.addImage}`;
-    // newBook.appendChild(bookImage);
+    const bookImage = document.createElement("img");
+    bookImage.classList.add("card-img-top");
+    bookImage.src = `${book.addImage}`;
+    newBook.appendChild(bookImage);
     
     const bookTitle = document.createElement("h5");
     bookTitle.innerText = book.title;
@@ -64,11 +67,11 @@ const renderBook = (book) => {
     bookCardId.classList.add("card-text");
     newBook.appendChild(bookCardId);
 
-    const loanButton = document.createElement('loan-book');
-    loanButton.innerText = "Loan";
-    loanButton.classList.add("btn", "btn-secondary");
-    loanButton.addEventListener('click', () => checkOut(book.id));
-    newBook.appendChild(loanButton);
+    // const loanButton = document.createElement('loan-book');
+    // loanButton.innerText = "Loan";
+    // loanButton.classList.add("btn", "btn-secondary");
+    // loanButton.addEventListener('click', () => checkOut(book.id));
+    // newBook.appendChild(loanButton);
 
     const reviewButton = document.createElement('review-book');
     reviewButton.innerText = "Review";
@@ -121,11 +124,15 @@ getAllBooks();
 // "/getByTitle/{title}" - search by title
 function searchResultsByTitle() {
 
-    axios
-        .get(`${baseURL}/books/getByTitle/title`)
-        .then(res => showSearchResults(res))
-        .catch(err => alert(err));
-}
+      axios
+        .get(`${baseURL}/books/getByTitle/{title}`)
+        .then(res => {
+            const books = res.data;
+            showOutput.innerHTML = "";
+            setResultMessage.innerHTML = `Your search returned ${books.length} results`;
+            books.forEach(book => renderBook(book, showOutput));
+        }).catch(err => console.log(err));
+    }
 
 // "/getByAuthor/{author}" -search by author
 function searchResultsByAuthor() {
@@ -135,6 +142,7 @@ function searchResultsByAuthor() {
         .then(res => showSearchResults(res))
         .catch(err => alert(err));
 }
+
 
 // "/getByGenre/{genre}" search by genre
 function searchResultsByGenre() {

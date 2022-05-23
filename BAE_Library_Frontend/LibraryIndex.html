@@ -29,30 +29,30 @@
                 <!-- SEARCH (GET/READ) CRITERIA - BY TITLE/AUTHOR/GENRE/ID  -->
                 <h4 style="text-align:center">Search</h4>
                 <form id="search-form-el">
-                    <div class="input-group mb-2">
+                    <div id="search-title-input" class="input-group mb-2">
                         <input type="text" class="form-control" placeholder="Enter Title" aria-label="" aria-describedby="button-addon2">
-                        <button class="btn btn-secondary" type="button" id="button-addon2">Search</button>
+                        <button class="btn btn-secondary" type="button" id="search-title-button">Search</button>
                     </div>
-                    <div class="input-group mb-2">
+                    <!-- <div class="input-group mb-2">
                         <input type="text" class="form-control" placeholder="Enter Book Id" aria-label="" aria-describedby="button-addon2">
                         <button class="btn btn-secondary" type="button" id="button-addon2">Search</button>
-                    </div>
+                    </div> -->
                     <div class="input-group mb-2">
-                        <select class="form-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+                        <select class="form-select" id="search-genre-select" aria-label="Example select with button addon">
                             <option selected>Select Genre</option>
                             <option value="1">Self-Help</option>
                             <option value="2">Biography</option>
                             <option value="3">Fiction</option>
                             <option value="3">Non-Fiction</option>
                         </select>
-                        <button class="btn btn-secondary" type="button">Search</button>
+                        <button id="serch-genre-button" class="btn btn-secondary" type="button">Search</button>
                     </div>
                     <div class="input-group mb-2">
-                        <input type="text" class="form-control" placeholder="Enter Author" aria-label="" aria-describedby="button-addon2">
-                        <button class="btn btn-secondary" type="button" id="button-addon2">Search</button>
+                        <input id="serch-author-input" type="text" class="form-control" placeholder="Enter Author" aria-label="" aria-describedby="button-addon2">
+                        <button class="btn btn-secondary" type="button" id="search-author-button">Search</button>
                     </div>
                     <div class="d-grid mb-2" id="clear-button">
-                        <button id="clearSerachesGetAll" class="btn btn-secondary" type="button" style="text-align:center">Search All</button>
+                        <button id="clear-searches-get-all" class="btn btn-secondary" type="button" style="text-align:center">Search All</button>
                     </div>
                 </form>
                 <br>
@@ -78,6 +78,13 @@
                     </div>
                 </form>
                 <br>
+                <h4 style="text-align:center">Loan</h4>
+                <div class="input-group mb-2">
+                    <input id="loan-input" type="text" class="form-control" placeholder="Enter Book Id" aria-label=""
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-secondary" type="button" id="loan-button">Return</button>
+                </div>
+                <br>
                 <h4 style="text-align:center">Return</h4>
                 <div class="input-group mb-2">
                     <input id="return-input" type="text" class="form-control" placeholder="Enter Book Id" aria-label="" aria-describedby="button-addon2">
@@ -86,8 +93,7 @@
                 <br>
                 <h4 style="text-align:center">Remove</h4>
                 <form id="remove-form" class="input-group mb-2">
-                    <input id="remove-input" type="text" class="form-control" placeholder="Enter Book Id" aria-label=""
-                        aria-describedby="button-addon2">
+                    <input id="remove-input" type="text" class="form-control" placeholder="Enter Book Id">
                     <button class="btn btn-secondary" type="submit" id="remove-button">Remove</button>
                 </form>
             </div>
@@ -95,10 +101,10 @@
             <!-- RIGHT HAND BROWSER WINDOW - ALL BOOKS DISPLAYED UNTIL FILTERED BY SEARCHES -->
             <div id="browser-window-el" class="col-8">
                 <!-- SEARCH RESULT NUM DISPLAYED -->
-                <p id="search-result-num-msg" style="text-align:center" style="font-size:15px;">Your search returned 0 results</p>
+                <p id="search-result-num-msg" style="text-align:center" style="font-size:15px;"></p>
                 <!-- WHERE BOOK CARDS WILL BE STORED IN GRID -->
                 <div class="container">
-                    <div id="showOutput" class="row row-cols-1 row-cols-md-3 g-4">
+                    <div id="show-output" class="row row-cols-1 row-cols-md-3 g-4">
                         <!--<div id="book-card" class="col-4 card text-center h-50">
                             <span id="card-banner" class="badge bg-danger"></span>
                             <img id="card-img" src="" height="350px" class="card-img-top" alt="">

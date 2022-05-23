@@ -70,7 +70,8 @@ public class BookService {
 		return repo.save(existing);
 	}
 
-	// delete by searching id
+	// delete by id
+
 	public boolean deleteBook(long id) {
 		repo.deleteById(id);
 		return !repo.existsById(id);
