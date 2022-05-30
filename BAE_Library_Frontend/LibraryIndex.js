@@ -21,7 +21,7 @@ const getAllBooks = () => {
         .then(res => {
             const books = res.data;
             showOutput.innerHTML = "";
-            setResultMessage.innerHTML = `Your search returned ${books.length} results`;
+            setResultMessage.innerHTML = `There are ${books.length} books in the Library Catalogue`;
             books.forEach(book => renderBook(book, showOutput));
         }).catch(err => console.log(err));
     }
@@ -39,12 +39,16 @@ const renderBook = (book) => {
     bookCard.appendChild(newBook);
 
     const bookBanner = document.createElement("span");
-    bookBanner.classList.add("badge")
+    if (book.isAvailable == true) {
+            bookBanner.classList.add("badge", "bg-success");
+        } else if (book.isAvailable == false) {
+            bookBanner.classList.add("badge", "bg-danger")
+        }
     newBook.appendChild(bookBanner);
 
     const bookImage = document.createElement("img");
     bookImage.classList.add("card-img-top");
-    bookImage.src = `${book.addImage}`;
+    bookImage.src = book.url;
     newBook.appendChild(bookImage);
     
     const bookTitle = document.createElement("h5");
@@ -102,7 +106,7 @@ document.querySelector("#donate-form").addEventListener("submit", (e) => {
         genre: form.genre.value,
         id: form.id.value,
         available: true,
-        url: form.image.value,
+        url: form.url.value,
         review: form.review.value
     }
 
@@ -192,6 +196,7 @@ document.querySelector("#return-button").addEventListener("click", (e) => {
 //         })
 
 // }
+
 // "/deleteBook/{id}" - delete
 document.querySelector("#remove-button").addEventListener("click", (e) => {
     e.preventDefault();

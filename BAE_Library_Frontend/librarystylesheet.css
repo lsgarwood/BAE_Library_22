@@ -1,5 +1,6 @@
 body {
     padding-bottom: 25px;
+    background-color: rgb(230, 238, 243);
 }
 
 .header {
@@ -22,11 +23,12 @@ body {
 }
 
 .row {
-    padding: 5px;
+    padding: 1px;
 }
 
-#card-imag-top {
-    height: 350px;
+.card-img-top {
+    height: 250px;
+    width: 100%
 }
 
 #clear-button,
@@ -35,8 +37,12 @@ body {
     width: 100%
 }
 
-#book-card {
-    size: 200px;
-    padding: 15px;
+.card {
+    /* size: 400px; */
+    /* padding: 15px; */
     text-align: center;
 }
+
+/* .card-title, .card-text {
+    font-size: small;
+} */
